@@ -22,6 +22,8 @@ import './interfaces/IDefifaDelegate.sol';
   JB721TieredGovernance: A generic tiered 721 delegate.
 */
 contract DefifaDelegate is IDefifaDelegate, JB721TieredGovernance {
+  using Checkpoints for Checkpoints.History;
+
   //*********************************************************************//
   // --------------------------- custom errors ------------------------- //
   //*********************************************************************//
@@ -81,6 +83,17 @@ contract DefifaDelegate is IDefifaDelegate, JB721TieredGovernance {
     The amount of tokens that have been redeemed from a tier, refunds are not counted
   */
   mapping(uint256 => uint256) private _redeemedFromTier;
+
+
+  //*********************************************************************//
+  // --------------------- publc stored properties --------------------- //
+  //*********************************************************************//
+
+  /**
+     @notice 
+     The number of tiers that have any minted tokens
+   */
+  uint256 public activeTiers;
 
   //*********************************************************************//
   // ------------------------- external views -------------------------- //
@@ -368,6 +381,21 @@ contract DefifaDelegate is IDefifaDelegate, JB721TieredGovernance {
       if (_tierDelegation[_to][_tier.id] == address(0)) {
         _tierDelegation[_to][_tier.id] = _to;
         emit DelegateChanged(_to, address(0), _to);
+      }
+
+      unchecked {
+        // Check if this is the first mint in this tier,
+        // if so we increase the number of tiers that are considered active
+        if (
+          _from == address(0) &&
+          _totalTierCheckpoints[_tier.id].latest() == 0
+        ) activeTiers++;
+        // Check if this is a burn of the last mint in this tier,
+        // if so we decrease the number of tiers that are considered active
+        else if(
+          _to == address(0) &&
+          _totalTierCheckpoints[_tier.id].latest() - _tier.votingUnits == 0
+        ) activeTiers--;
       }
 
       // Transfer the voting units.
