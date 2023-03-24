@@ -303,8 +303,8 @@ contract DefifaDeployer is IDefifaDeployer, IERC721Receiver {
           lockReservedTokenChanges: false,
           lockVotingUnitChanges: false,
           lockManualMintingChanges: false
-      })//,
-      //_delegateData.tierNames
+      }),
+      _delegateData.tierNames
     );
 
     // Make sure the provided terminal accepts the same currency as this game is being played in.
