@@ -59,7 +59,7 @@
     },
     {
       "inputs": [],
-      "name": "defifaDelegate",
+      "name": "delegate",
       "outputs": [
         {
           "internalType": "contract IDefifaDelegate",
@@ -179,13 +179,13 @@
     "attestToScorecard(uint256)": "19f82536",
     "attestToScorecardWithReasonAndParams(uint256,bytes)": "7c8bd0ed",
     "codeOrigin()": "1d153ca4",
-    "defifaDelegate()": "58d5ac0a",
+    "delegate()": "c89e4361",
     "initialize(address,uint256)": "cd6dc687",
     "ratifyScorecard((uint256,uint256)[])": "64d87a61",
     "submitScorecards((uint256,uint256)[])": "59f397bd",
     "votingStartTime()": "2019a608"
   },
-  "rawMetadata": "{\"compiler\":{\"version\":\"0.8.17+commit.8df45f5f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"MAX_VOTING_POWER_TIER\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_scorecardId\",\"type\":\"uint256\"}],\"name\":\"attestToScorecard\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_scorecardId\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"params\",\"type\":\"bytes\"}],\"name\":\"attestToScorecardWithReasonAndParams\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"codeOrigin\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"defifaDelegate\",\"outputs\":[{\"internalType\":\"contract IDefifaDelegate\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"contract IDefifaDelegate\",\"name\":\"_defifaDelegate\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_votingStartTime\",\"type\":\"uint256\"}],\"name\":\"initialize\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"redemptionWeight\",\"type\":\"uint256\"}],\"internalType\":\"struct DefifaTierRedemptionWeight[]\",\"name\":\"_tierWeights\",\"type\":\"tuple[]\"}],\"name\":\"ratifyScorecard\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"redemptionWeight\",\"type\":\"uint256\"}],\"internalType\":\"struct DefifaTierRedemptionWeight[]\",\"name\":\"_tierWeights\",\"type\":\"tuple[]\"}],\"name\":\"submitScorecards\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"votingStartTime\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/interfaces/IDefifaGovernor.sol\":\"IDefifaGovernor\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[\":@jbx-protocol/=node_modules/@jbx-protocol/\",\":@openzeppelin/=node_modules/@openzeppelin/\",\":@paulrberg/=node_modules/@paulrberg/\",\":base64/=lib/base64/\",\":capsules/=lib/capsules/contracts/\",\":ds-test/=lib/forge-std/lib/ds-test/src/\",\":forge-std/=lib/forge-std/src/\",\":prb-math/=node_modules/prb-math/\",\":typeface/=lib/typeface/contracts/\"],\"viaIR\":true},\"sources\":{\"contracts/interfaces/IDefifaDelegate.sol\":{\"keccak256\":\"0x01a0d63f873d938fcf5e3f79725a890031c481f1152a82d8de32ec8c7e3dd7b3\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://b187dfe8a9a8278e6fd6a5eee89ed88f800c7b941d4637ab1a2061e3228003e5\",\"dweb:/ipfs/QmfVFVFp9zYPY7Syd9ruM6fd2cgc2NpHwjxhkHuLxaqa1i\"]},\"contracts/interfaces/IDefifaGovernor.sol\":{\"keccak256\":\"0x0fa2ca9a1f753e9f739eeb7dd56e22ef4ff5ac8a9ea5565ee4b52fc77724cb5c\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://7aba15cb87d73a2aa3b0ec50fb0c3fc586d65da855a5533109b1524222f80a7f\",\"dweb:/ipfs/QmYLLvhfWmQHgy5PtMpzM5GGjdBkdhBqSYFa8gMYQSa3GE\"]},\"contracts/structs/DefifaTierRedemptionWeight.sol\":{\"keccak256\":\"0x023e9d8604410129c47ba6df92714393a84daeeff1340babe592a74e64976a32\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://12b3c354289b80d24c6d3c9fdcc582e076c97b5a7eef6d559483b8489d8ec24a\",\"dweb:/ipfs/QmWu2W1GteoLMsBU1jYkrKYM3eUzsRadhzpoGqPFBc3PHz\"]},\"node_modules/@jbx-protocol/juice-721-delegate/contracts/interfaces/IJB721Delegate.sol\":{\"keccak256\":\"0xa8fbb99c63314f21fb37435c4c3beb7b036b1fa423091ecb4908333612598e6f\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://f06796c0da61e0642eb7d2170e0ddd2ebd97d33c42b8f01ea5dd233882b2fb87\",\"dweb:/ipfs/QmXmfmSScCwpimkyJEB3USwvzfA18zoL4KqkPvE2ZPuP8J\"]},\"node_modules/@jbx-protocol/juice-721-delegate/contracts/interfaces/IJB721TieredGovernance.sol\":{\"keccak256\":\"0xd52f20b6dc2b2e6d741865b8d615f0152c092d68613c58b43a1c45154573be35\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://4455c3916266a566ac5f04d77937090f4aa5829535eefebcd349b17f11e5c219\",\"dweb:/ipfs/Qme2h96YKBzFXSnC8CMzEWxte93ZzEGck8MkmVMyeZN4S4\"]},\"node_modules/@jbx-protocol/juice-721-delegate/contracts/interfaces/IJBTiered721Delegate.sol\":{\"keccak256\":\"0x8db10d5f923986788909482ee56a13d0b4a774af2b2a49339976b7beafe9eace\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://6a94f3a55989aa0dcc04eadbc7325de65dbfba4ca43f28c343de700bb1ade5c4\",\"dweb:/ipfs/Qmb8D7T44w9CB88kTzUmkaY2erPrFudqXuhy39Q8X71Lyb\"]},\"node_modules/@jbx-protocol/juice-721-delegate/contracts/interfaces/IJBTiered721DelegateStore.sol\":{\"keccak256\":\"0xee146bf2a3c3304086f269c5c9770e234e1c64c216c54ed628e10729f1291884\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://655a35da8956e588a1b19b534f40655e79ef534537da3107ae6e74786b472a89\",\"dweb:/ipfs/QmVqRHcAFRG8UveBC8VkcbEUM4GiRfWPQYXNWgWURd23UJ\"]},\"node_modules/@jbx-protocol/juice-721-delegate/contracts/structs/JB721PricingParams.sol\":{\"keccak256\":\"0x65c6b3a05158713e76ccf22091405b9f7bb023b3e382b2da1babbd6c69961586\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://fdfbdd554f5a17ede36c57fa7e004548be852f9d840adeb46abc5389d3c4a684\",\"dweb:/ipfs/QmYUA3NuZVLXMtsPpKpuVxn4DAnz55CpxvqmSuREwf8JaU\"]},\"node_modules/@jbx-protocol/juice-721-delegate/contracts/structs/JB721Tier.sol\":{\"keccak256\":\"0x22bf1899c34e0d0ca59479fd2abb25ff866d29f743cdeb2f61bb1e5af130f5f6\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://63cb55ed4ac9e80158aa121d06cd237dc7197dffe21401954b4c1f5c8ae5a47c\",\"dweb:/ipfs/QmRQVQdLSWfxqd9dCF9FhLbcVdp6ZqkcpWi56Y79NocHea\"]},\"node_modules/@jbx-protocol/juice-721-delegate/contracts/structs/JB721TierParams.sol\":{\"keccak256\":\"0xd4f356e3dfc057162840d91f896171255e5e218da07fb88f2a1e917322e87eb6\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://ffcc1a35c04396da6df89d45776999b674f1b70380a3086267108d25a1b18076\",\"dweb:/ipfs/QmcWscbiLGPUMTpm5YayuSRwGFsZc617Hd9KSrAzfVhrS8\"]},\"node_modules/@jbx-protocol/juice-721-delegate/contracts/structs/JBTiered721Flags.sol\":{\"keccak256\":\"0x42f9625c893559b44bbe79d7fc3f6190a0dceea673b6137ef393c44d517a9ae2\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://b13d3d700323e73f4f2f67b3c41b20ded126009a4ac2acec0fba444d0ce6032f\",\"dweb:/ipfs/QmWkbrzcNDtFxdApDBy8rCsBLu3ovzzZJeA9Tin9pcncSs\"]},\"node_modules/@jbx-protocol/juice-721-delegate/contracts/structs/JBTiered721MintForTiersData.sol\":{\"keccak256\":\"0x357b55115f542c89e1ccb0338d7b84913018ab00be1582a0e3323dacdb579c42\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://539586eb3ffeb85ce7a9cbf33fc8c438b34feef2aff1a5e66edcbfaf1210ff4e\",\"dweb:/ipfs/QmaCWYcygXBpg6z7bm8TiA7KXGFvC2Yqkv2i8Eaw2mtYV2\"]},\"node_modules/@jbx-protocol/juice-721-delegate/contracts/structs/JBTiered721MintReservesForTiersData.sol\":{\"keccak256\":\"0xc04c71a3bbf7daad10971d9507c123e22e5996c4b1497c05deff1c0d6d59b9d0\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://0e93c80696a98d57053462a156be6f8290ee931666b77f6ff97df4bb2a3b0cc1\",\"dweb:/ipfs/QmZUqXnsaYMz4orNoQ3ybm2So1sHA7qQ46jxu4QRMhFTsq\"]},\"node_modules/@jbx-protocol/juice-721-delegate/contracts/structs/JBTiered721SetTierDelegatesData.sol\":{\"keccak256\":\"0x9e498d8c9c327d6e19407095e89cdd14d47426edb9f4add595e562a022fa3942\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://2b6322c0d3671d6ea15eef9fc6fda911cfe6b8d86bee28f2c2f12602574b9d56\",\"dweb:/ipfs/QmaHAWP26DQ4631d9x4jjtRxLNXVcfNEcHpeX67XMGXwX8\"]},\"node_modules/@jbx-protocol/juice-contracts-v3/contracts/enums/JBBallotState.sol\":{\"keccak256\":\"0x891fcac63470398b3a11239da7feba6b07d640809fcefd2404303b823d7378f8\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://6e6adfceaf284b669a8c1cbcf2da7f18ab31a2d1066f9db8bc914349e7401de7\",\"dweb:/ipfs/QmXLHVRPPZdXUkgAHQbHUtEzAvCJk1P6rJ7wrwfTcfW6fw\"]},\"node_modules/@jbx-protocol/juice-contracts-v3/contracts/interfaces/IJBDirectory.sol\":{\"keccak256\":\"0x715321646db00514d1355ed43c40cd3f01e94959552fd07797b315d9c49cdb1d\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://c34c9e1c727ffc63dd42fb6e6ffb3116c8ba15d6a322a300f10f29478974768d\",\"dweb:/ipfs/QmYToaGrbMyyWAuyepYcDd8M6KcmosY8AWhT3uJmPM6Pvy\"]},\"node_modules/@jbx-protocol/juice-contracts-v3/contracts/interfaces/IJBFundingCycleBallot.sol\":{\"keccak256\":\"0x49553a56209237846bc400cf27f260824a6bd06fd8094a7eb5abb9de75779598\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://559372746f94f28b385bc336df263f583dca5377350645c0b28110b083bdb41a\",\"dweb:/ipfs/QmeQRYqPjXBQCtMKXSFtHVD2ewEPoUAPDxLh4oWTRSKbmx\"]},\"node_modules/@jbx-protocol/juice-contracts-v3/contracts/interfaces/IJBFundingCycleStore.sol\":{\"keccak256\":\"0xaead823851433be0c2ddc8f8086813e6cd647de3a1bc0f7570a5d6b38c378b5a\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://7f11fd52ba9ef67b40811d8a2298ae8b69447d2565b3f1069cbb8f0f13bc65e7\",\"dweb:/ipfs/QmVbBzpTxZWar9xvj6x1vW91hJDv2iPVq7aG6waMxaHUPQ\"]},\"node_modules/@jbx-protocol/juice-contracts-v3/contracts/interfaces/IJBPaymentTerminal.sol\":{\"keccak256\":\"0xb7826f5ed609359ce322c09e83236c47ba385df1c3cad3607e56fd0a2e00eee2\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://cbb0de0e73f73a04fcfc8f08cab3588b6d608cf5268af737cff6a530f6062c95\",\"dweb:/ipfs/QmPGb8aEbZNHNnrCvuGH52RLvV3kjL3agxQiFrjHoLHaup\"]},\"node_modules/@jbx-protocol/juice-contracts-v3/contracts/interfaces/IJBPriceFeed.sol\":{\"keccak256\":\"0x57c71282fec1b34b00cf991ffed2e36031c393e35bfa7ca5d723eb6572fb7122\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://f51c97ac194d3120a2fb5428eeeff759b75b7cbc5708465afc914619016a7c9b\",\"dweb:/ipfs/QmemTqsGqoPqG97EsdRTMAbB6RfCz8CJxGYPNnDTV6LJ2t\"]},\"node_modules/@jbx-protocol/juice-contracts-v3/contracts/interfaces/IJBPrices.sol\":{\"keccak256\":\"0x82a175b1f4b95b506c98406576cd59cbe04615e3df24f9cf3587b61b8ee323b1\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://5493e394cf47fca51a4091f1e6d285cc9e4ff9916e5bdfb8e174fe652a2b9833\",\"dweb:/ipfs/QmTXafZatcjYbNMpUYYk1AWNZLkRFK7VVdAYYudGf4z3HJ\"]},\"node_modules/@jbx-protocol/juice-contracts-v3/contracts/interfaces/IJBProjects.sol\":{\"keccak256\":\"0x7cfc021d0bd7e73b1ba8f4845d7d35e3419d6a14d3d25ca3a8010e7f91062fe4\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://ff265e13e60da56b93104260ed69ab01153437ec2af9d453781f22ca295eaef9\",\"dweb:/ipfs/QmfGCSLX2Wy26ojf4U12udsdtjSSacbLcZGwCjTw7MjWF8\"]},\"node_modules/@jbx-protocol/juice-contracts-v3/contracts/interfaces/IJBTokenUriResolver.sol\":{\"keccak256\":\"0xd267fd8ca7c21c2c71794acdb9a98314c33a35fc559e0bf0897a6686d196d174\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://aa7053d4300ed1374f3f993e6e2163d0a05ee780e4e99eb007b55eabc93c724e\",\"dweb:/ipfs/QmYZAUn7VCwqpDWYZNCXLNYMRQpD334YgPRiGCfxQApzuT\"]},\"node_modules/@jbx-protocol/juice-contracts-v3/contracts/structs/JBFundingCycle.sol\":{\"keccak256\":\"0xcdd3ac9b6fa67e62ada88d09b73bc35ade1cd77d43db712289266a788928b4c2\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://8ba0be407022bbeb0e9272884653209ee262b8a4e00ffbba1298c3b119feccba\",\"dweb:/ipfs/QmbtLQzSN3hut4jYVsYPiYDfRkDdGkZmTWBnV2wJKrdM3K\"]},\"node_modules/@jbx-protocol/juice-contracts-v3/contracts/structs/JBFundingCycleData.sol\":{\"keccak256\":\"0x2aa6368bf4dfc5797e8b02a978293de0c777fae2658de2c825a103587240f3b0\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://2d7a980ab9b67ad1569d4407b747903cab668a332214117f5ad44feb50af0a3a\",\"dweb:/ipfs/QmSuEzmrmDSihrTKYCk8miq7VQi7WD6jmQePkjDyzt7UpC\"]},\"node_modules/@jbx-protocol/juice-contracts-v3/contracts/structs/JBProjectMetadata.sol\":{\"keccak256\":\"0x90ad7b1014c0a9f945fe7a2efde9d5de41e40574fa27969070b1d2ff52033ea0\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://1fafc65a9fd74605b7d6c6f0a92b3237a8e3efdd160affb8c117bad00dcf9494\",\"dweb:/ipfs/QmQkcVt11WLqrxHVrcDCF6dNxzg2kKHEghAgSbfLF6CHkt\"]},\"node_modules/@openzeppelin/contracts/token/ERC721/IERC721.sol\":{\"keccak256\":\"0xed6a749c5373af398105ce6ee3ac4763aa450ea7285d268c85d9eeca809cdb1f\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://20a97f891d06f0fe91560ea1a142aaa26fdd22bed1b51606b7d48f670deeb50f\",\"dweb:/ipfs/QmTbCtZKChpaX5H2iRiTDMcSz29GSLCpTCDgJpcMR4wg8x\"]},\"node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol\":{\"keccak256\":\"0x447a5f3ddc18419d41ff92b3773fb86471b1db25773e07f877f548918a185bf1\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://be161e54f24e5c6fae81a12db1a8ae87bc5ae1b0ddc805d82a1440a68455088f\",\"dweb:/ipfs/QmP7C3CHdY9urF4dEMb9wmsp1wMxHF6nhA2yQE5SKiPAdy\"]}},\"version\":1}",
+  "rawMetadata": "{\"compiler\":{\"version\":\"0.8.17+commit.8df45f5f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"MAX_VOTING_POWER_TIER\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_scorecardId\",\"type\":\"uint256\"}],\"name\":\"attestToScorecard\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_scorecardId\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"params\",\"type\":\"bytes\"}],\"name\":\"attestToScorecardWithReasonAndParams\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"codeOrigin\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"delegate\",\"outputs\":[{\"internalType\":\"contract IDefifaDelegate\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"contract IDefifaDelegate\",\"name\":\"_defifaDelegate\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_votingStartTime\",\"type\":\"uint256\"}],\"name\":\"initialize\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"redemptionWeight\",\"type\":\"uint256\"}],\"internalType\":\"struct DefifaTierRedemptionWeight[]\",\"name\":\"_tierWeights\",\"type\":\"tuple[]\"}],\"name\":\"ratifyScorecard\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"redemptionWeight\",\"type\":\"uint256\"}],\"internalType\":\"struct DefifaTierRedemptionWeight[]\",\"name\":\"_tierWeights\",\"type\":\"tuple[]\"}],\"name\":\"submitScorecards\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"votingStartTime\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/interfaces/IDefifaGovernor.sol\":\"IDefifaGovernor\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[\":@jbx-protocol/=node_modules/@jbx-protocol/\",\":@openzeppelin/=node_modules/@openzeppelin/\",\":@paulrberg/=node_modules/@paulrberg/\",\":base64/=lib/base64/\",\":capsules/=lib/capsules/contracts/\",\":ds-test/=lib/forge-std/lib/ds-test/src/\",\":forge-std/=lib/forge-std/src/\",\":prb-math/=node_modules/prb-math/\",\":typeface/=lib/typeface/contracts/\"],\"viaIR\":true},\"sources\":{\"contracts/interfaces/IDefifaDelegate.sol\":{\"keccak256\":\"0x910f88b8bab0915f3c51fa66e35f34f0a15a8bd2a3713ee76e806a7fef35b66f\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://27ff45cc7f1178fd61f70db362d122e45139d1a27bb1ea0f9c4b03b0eaff6561\",\"dweb:/ipfs/QmbR7Zn31PRMkFYrhKisHsoFr9Byuw6sfKRtGC3nWjKLHv\"]},\"contracts/interfaces/IDefifaGovernor.sol\":{\"keccak256\":\"0x8d439221ac4d4e13a4bc2082d87305cf535b8d82986884724db92c34efd57f86\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://7cf3b8244846e1895271799a0191fd953867f66a40c3d76584a217c76b88b430\",\"dweb:/ipfs/QmNQVnRKjvShb4LHxGkFX4CJgfKsfEruevWHaYxYHZ9uVr\"]},\"contracts/structs/DefifaTierRedemptionWeight.sol\":{\"keccak256\":\"0x023e9d8604410129c47ba6df92714393a84daeeff1340babe592a74e64976a32\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://12b3c354289b80d24c6d3c9fdcc582e076c97b5a7eef6d559483b8489d8ec24a\",\"dweb:/ipfs/QmWu2W1GteoLMsBU1jYkrKYM3eUzsRadhzpoGqPFBc3PHz\"]},\"node_modules/@jbx-protocol/juice-721-delegate/contracts/interfaces/IJB721Delegate.sol\":{\"keccak256\":\"0xa8fbb99c63314f21fb37435c4c3beb7b036b1fa423091ecb4908333612598e6f\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://f06796c0da61e0642eb7d2170e0ddd2ebd97d33c42b8f01ea5dd233882b2fb87\",\"dweb:/ipfs/QmXmfmSScCwpimkyJEB3USwvzfA18zoL4KqkPvE2ZPuP8J\"]},\"node_modules/@jbx-protocol/juice-721-delegate/contracts/interfaces/IJB721TieredGovernance.sol\":{\"keccak256\":\"0xd52f20b6dc2b2e6d741865b8d615f0152c092d68613c58b43a1c45154573be35\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://4455c3916266a566ac5f04d77937090f4aa5829535eefebcd349b17f11e5c219\",\"dweb:/ipfs/Qme2h96YKBzFXSnC8CMzEWxte93ZzEGck8MkmVMyeZN4S4\"]},\"node_modules/@jbx-protocol/juice-721-delegate/contracts/interfaces/IJBTiered721Delegate.sol\":{\"keccak256\":\"0x8db10d5f923986788909482ee56a13d0b4a774af2b2a49339976b7beafe9eace\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://6a94f3a55989aa0dcc04eadbc7325de65dbfba4ca43f28c343de700bb1ade5c4\",\"dweb:/ipfs/Qmb8D7T44w9CB88kTzUmkaY2erPrFudqXuhy39Q8X71Lyb\"]},\"node_modules/@jbx-protocol/juice-721-delegate/contracts/interfaces/IJBTiered721DelegateStore.sol\":{\"keccak256\":\"0xee146bf2a3c3304086f269c5c9770e234e1c64c216c54ed628e10729f1291884\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://655a35da8956e588a1b19b534f40655e79ef534537da3107ae6e74786b472a89\",\"dweb:/ipfs/QmVqRHcAFRG8UveBC8VkcbEUM4GiRfWPQYXNWgWURd23UJ\"]},\"node_modules/@jbx-protocol/juice-721-delegate/contracts/structs/JB721PricingParams.sol\":{\"keccak256\":\"0x65c6b3a05158713e76ccf22091405b9f7bb023b3e382b2da1babbd6c69961586\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://fdfbdd554f5a17ede36c57fa7e004548be852f9d840adeb46abc5389d3c4a684\",\"dweb:/ipfs/QmYUA3NuZVLXMtsPpKpuVxn4DAnz55CpxvqmSuREwf8JaU\"]},\"node_modules/@jbx-protocol/juice-721-delegate/contracts/structs/JB721Tier.sol\":{\"keccak256\":\"0x22bf1899c34e0d0ca59479fd2abb25ff866d29f743cdeb2f61bb1e5af130f5f6\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://63cb55ed4ac9e80158aa121d06cd237dc7197dffe21401954b4c1f5c8ae5a47c\",\"dweb:/ipfs/QmRQVQdLSWfxqd9dCF9FhLbcVdp6ZqkcpWi56Y79NocHea\"]},\"node_modules/@jbx-protocol/juice-721-delegate/contracts/structs/JB721TierParams.sol\":{\"keccak256\":\"0xd4f356e3dfc057162840d91f896171255e5e218da07fb88f2a1e917322e87eb6\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://ffcc1a35c04396da6df89d45776999b674f1b70380a3086267108d25a1b18076\",\"dweb:/ipfs/QmcWscbiLGPUMTpm5YayuSRwGFsZc617Hd9KSrAzfVhrS8\"]},\"node_modules/@jbx-protocol/juice-721-delegate/contracts/structs/JBTiered721Flags.sol\":{\"keccak256\":\"0x42f9625c893559b44bbe79d7fc3f6190a0dceea673b6137ef393c44d517a9ae2\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://b13d3d700323e73f4f2f67b3c41b20ded126009a4ac2acec0fba444d0ce6032f\",\"dweb:/ipfs/QmWkbrzcNDtFxdApDBy8rCsBLu3ovzzZJeA9Tin9pcncSs\"]},\"node_modules/@jbx-protocol/juice-721-delegate/contracts/structs/JBTiered721MintForTiersData.sol\":{\"keccak256\":\"0x357b55115f542c89e1ccb0338d7b84913018ab00be1582a0e3323dacdb579c42\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://539586eb3ffeb85ce7a9cbf33fc8c438b34feef2aff1a5e66edcbfaf1210ff4e\",\"dweb:/ipfs/QmaCWYcygXBpg6z7bm8TiA7KXGFvC2Yqkv2i8Eaw2mtYV2\"]},\"node_modules/@jbx-protocol/juice-721-delegate/contracts/structs/JBTiered721MintReservesForTiersData.sol\":{\"keccak256\":\"0xc04c71a3bbf7daad10971d9507c123e22e5996c4b1497c05deff1c0d6d59b9d0\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://0e93c80696a98d57053462a156be6f8290ee931666b77f6ff97df4bb2a3b0cc1\",\"dweb:/ipfs/QmZUqXnsaYMz4orNoQ3ybm2So1sHA7qQ46jxu4QRMhFTsq\"]},\"node_modules/@jbx-protocol/juice-721-delegate/contracts/structs/JBTiered721SetTierDelegatesData.sol\":{\"keccak256\":\"0x9e498d8c9c327d6e19407095e89cdd14d47426edb9f4add595e562a022fa3942\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://2b6322c0d3671d6ea15eef9fc6fda911cfe6b8d86bee28f2c2f12602574b9d56\",\"dweb:/ipfs/QmaHAWP26DQ4631d9x4jjtRxLNXVcfNEcHpeX67XMGXwX8\"]},\"node_modules/@jbx-protocol/juice-contracts-v3/contracts/enums/JBBallotState.sol\":{\"keccak256\":\"0x891fcac63470398b3a11239da7feba6b07d640809fcefd2404303b823d7378f8\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://6e6adfceaf284b669a8c1cbcf2da7f18ab31a2d1066f9db8bc914349e7401de7\",\"dweb:/ipfs/QmXLHVRPPZdXUkgAHQbHUtEzAvCJk1P6rJ7wrwfTcfW6fw\"]},\"node_modules/@jbx-protocol/juice-contracts-v3/contracts/interfaces/IJBDirectory.sol\":{\"keccak256\":\"0x715321646db00514d1355ed43c40cd3f01e94959552fd07797b315d9c49cdb1d\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://c34c9e1c727ffc63dd42fb6e6ffb3116c8ba15d6a322a300f10f29478974768d\",\"dweb:/ipfs/QmYToaGrbMyyWAuyepYcDd8M6KcmosY8AWhT3uJmPM6Pvy\"]},\"node_modules/@jbx-protocol/juice-contracts-v3/contracts/interfaces/IJBFundingCycleBallot.sol\":{\"keccak256\":\"0x49553a56209237846bc400cf27f260824a6bd06fd8094a7eb5abb9de75779598\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://559372746f94f28b385bc336df263f583dca5377350645c0b28110b083bdb41a\",\"dweb:/ipfs/QmeQRYqPjXBQCtMKXSFtHVD2ewEPoUAPDxLh4oWTRSKbmx\"]},\"node_modules/@jbx-protocol/juice-contracts-v3/contracts/interfaces/IJBFundingCycleStore.sol\":{\"keccak256\":\"0xaead823851433be0c2ddc8f8086813e6cd647de3a1bc0f7570a5d6b38c378b5a\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://7f11fd52ba9ef67b40811d8a2298ae8b69447d2565b3f1069cbb8f0f13bc65e7\",\"dweb:/ipfs/QmVbBzpTxZWar9xvj6x1vW91hJDv2iPVq7aG6waMxaHUPQ\"]},\"node_modules/@jbx-protocol/juice-contracts-v3/contracts/interfaces/IJBPaymentTerminal.sol\":{\"keccak256\":\"0xb7826f5ed609359ce322c09e83236c47ba385df1c3cad3607e56fd0a2e00eee2\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://cbb0de0e73f73a04fcfc8f08cab3588b6d608cf5268af737cff6a530f6062c95\",\"dweb:/ipfs/QmPGb8aEbZNHNnrCvuGH52RLvV3kjL3agxQiFrjHoLHaup\"]},\"node_modules/@jbx-protocol/juice-contracts-v3/contracts/interfaces/IJBPriceFeed.sol\":{\"keccak256\":\"0x57c71282fec1b34b00cf991ffed2e36031c393e35bfa7ca5d723eb6572fb7122\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://f51c97ac194d3120a2fb5428eeeff759b75b7cbc5708465afc914619016a7c9b\",\"dweb:/ipfs/QmemTqsGqoPqG97EsdRTMAbB6RfCz8CJxGYPNnDTV6LJ2t\"]},\"node_modules/@jbx-protocol/juice-contracts-v3/contracts/interfaces/IJBPrices.sol\":{\"keccak256\":\"0x82a175b1f4b95b506c98406576cd59cbe04615e3df24f9cf3587b61b8ee323b1\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://5493e394cf47fca51a4091f1e6d285cc9e4ff9916e5bdfb8e174fe652a2b9833\",\"dweb:/ipfs/QmTXafZatcjYbNMpUYYk1AWNZLkRFK7VVdAYYudGf4z3HJ\"]},\"node_modules/@jbx-protocol/juice-contracts-v3/contracts/interfaces/IJBProjects.sol\":{\"keccak256\":\"0x7cfc021d0bd7e73b1ba8f4845d7d35e3419d6a14d3d25ca3a8010e7f91062fe4\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://ff265e13e60da56b93104260ed69ab01153437ec2af9d453781f22ca295eaef9\",\"dweb:/ipfs/QmfGCSLX2Wy26ojf4U12udsdtjSSacbLcZGwCjTw7MjWF8\"]},\"node_modules/@jbx-protocol/juice-contracts-v3/contracts/interfaces/IJBTokenUriResolver.sol\":{\"keccak256\":\"0xd267fd8ca7c21c2c71794acdb9a98314c33a35fc559e0bf0897a6686d196d174\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://aa7053d4300ed1374f3f993e6e2163d0a05ee780e4e99eb007b55eabc93c724e\",\"dweb:/ipfs/QmYZAUn7VCwqpDWYZNCXLNYMRQpD334YgPRiGCfxQApzuT\"]},\"node_modules/@jbx-protocol/juice-contracts-v3/contracts/structs/JBFundingCycle.sol\":{\"keccak256\":\"0xcdd3ac9b6fa67e62ada88d09b73bc35ade1cd77d43db712289266a788928b4c2\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://8ba0be407022bbeb0e9272884653209ee262b8a4e00ffbba1298c3b119feccba\",\"dweb:/ipfs/QmbtLQzSN3hut4jYVsYPiYDfRkDdGkZmTWBnV2wJKrdM3K\"]},\"node_modules/@jbx-protocol/juice-contracts-v3/contracts/structs/JBFundingCycleData.sol\":{\"keccak256\":\"0x2aa6368bf4dfc5797e8b02a978293de0c777fae2658de2c825a103587240f3b0\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://2d7a980ab9b67ad1569d4407b747903cab668a332214117f5ad44feb50af0a3a\",\"dweb:/ipfs/QmSuEzmrmDSihrTKYCk8miq7VQi7WD6jmQePkjDyzt7UpC\"]},\"node_modules/@jbx-protocol/juice-contracts-v3/contracts/structs/JBProjectMetadata.sol\":{\"keccak256\":\"0x90ad7b1014c0a9f945fe7a2efde9d5de41e40574fa27969070b1d2ff52033ea0\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://1fafc65a9fd74605b7d6c6f0a92b3237a8e3efdd160affb8c117bad00dcf9494\",\"dweb:/ipfs/QmQkcVt11WLqrxHVrcDCF6dNxzg2kKHEghAgSbfLF6CHkt\"]},\"node_modules/@openzeppelin/contracts/token/ERC721/IERC721.sol\":{\"keccak256\":\"0xed6a749c5373af398105ce6ee3ac4763aa450ea7285d268c85d9eeca809cdb1f\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://20a97f891d06f0fe91560ea1a142aaa26fdd22bed1b51606b7d48f670deeb50f\",\"dweb:/ipfs/QmTbCtZKChpaX5H2iRiTDMcSz29GSLCpTCDgJpcMR4wg8x\"]},\"node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol\":{\"keccak256\":\"0x447a5f3ddc18419d41ff92b3773fb86471b1db25773e07f877f548918a185bf1\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://be161e54f24e5c6fae81a12db1a8ae87bc5ae1b0ddc805d82a1440a68455088f\",\"dweb:/ipfs/QmP7C3CHdY9urF4dEMb9wmsp1wMxHF6nhA2yQE5SKiPAdy\"]}},\"version\":1}",
   "metadata": {
     "compiler": {
       "version": "0.8.17+commit.8df45f5f"
@@ -252,7 +252,7 @@
           "inputs": [],
           "stateMutability": "view",
           "type": "function",
-          "name": "defifaDelegate",
+          "name": "delegate",
           "outputs": [
             {
               "internalType": "contract IDefifaDelegate",
@@ -392,18 +392,18 @@
     },
     "sources": {
       "contracts/interfaces/IDefifaDelegate.sol": {
-        "keccak256": "0x01a0d63f873d938fcf5e3f79725a890031c481f1152a82d8de32ec8c7e3dd7b3",
+        "keccak256": "0x910f88b8bab0915f3c51fa66e35f34f0a15a8bd2a3713ee76e806a7fef35b66f",
         "urls": [
-          "bzz-raw://b187dfe8a9a8278e6fd6a5eee89ed88f800c7b941d4637ab1a2061e3228003e5",
-          "dweb:/ipfs/QmfVFVFp9zYPY7Syd9ruM6fd2cgc2NpHwjxhkHuLxaqa1i"
+          "bzz-raw://27ff45cc7f1178fd61f70db362d122e45139d1a27bb1ea0f9c4b03b0eaff6561",
+          "dweb:/ipfs/QmbR7Zn31PRMkFYrhKisHsoFr9Byuw6sfKRtGC3nWjKLHv"
         ],
         "license": "MIT"
       },
       "contracts/interfaces/IDefifaGovernor.sol": {
-        "keccak256": "0x0fa2ca9a1f753e9f739eeb7dd56e22ef4ff5ac8a9ea5565ee4b52fc77724cb5c",
+        "keccak256": "0x8d439221ac4d4e13a4bc2082d87305cf535b8d82986884724db92c34efd57f86",
         "urls": [
-          "bzz-raw://7aba15cb87d73a2aa3b0ec50fb0c3fc586d65da855a5533109b1524222f80a7f",
-          "dweb:/ipfs/QmYLLvhfWmQHgy5PtMpzM5GGjdBkdhBqSYFa8gMYQSa3GE"
+          "bzz-raw://7cf3b8244846e1895271799a0191fd953867f66a40c3d76584a217c76b88b430",
+          "dweb:/ipfs/QmNQVnRKjvShb4LHxGkFX4CJgfKsfEruevWHaYxYHZ9uVr"
         ],
         "license": "MIT"
       },
@@ -620,100 +620,100 @@
   },
   "ast": {
     "absolutePath": "contracts/interfaces/IDefifaGovernor.sol",
-    "id": 2681,
+    "id": 3322,
     "exportedSymbols": {
       "DefifaTierRedemptionWeight": [
-        2929
+        3721
       ],
       "IDefifaDelegate": [
-        2490
+        3131
       ],
       "IDefifaGovernor": [
-        2680
+        3321
       ],
       "IERC165": [
-        59157
+        59949
       ],
       "IERC721": [
-        57419
+        58211
       ],
       "IJB721Delegate": [
-        36222
+        37014
       ],
       "IJB721TieredGovernance": [
-        36320
+        37112
       ],
       "IJBDirectory": [
-        49326
+        50118
       ],
       "IJBFundingCycleBallot": [
-        49360
+        50152
       ],
       "IJBFundingCycleStore": [
-        49497
+        50289
       ],
       "IJBPaymentTerminal": [
-        49670
+        50462
       ],
       "IJBPriceFeed": [
-        50033
+        50825
       ],
       "IJBPrices": [
-        50077
+        50869
       ],
       "IJBProjects": [
-        50156
+        50948
       ],
       "IJBTiered721Delegate": [
-        36542
+        37334
       ],
       "IJBTiered721DelegateStore": [
-        36937
-      ],
-      "IJBTokenUriResolver": [
-        50775
-      ],
-      "JB721PricingParams": [
-        37515
-      ],
-      "JB721Tier": [
-        37546
-      ],
-      "JB721TierParams": [
-        37577
-      ],
-      "JBBallotState": [
-        48339
-      ],
-      "JBFundingCycle": [
-        51763
-      ],
-      "JBFundingCycleData": [
-        51776
-      ],
-      "JBProjectMetadata": [
-        51889
-      ],
-      "JBTiered721Flags": [
         37729
       ],
+      "IJBTokenUriResolver": [
+        51567
+      ],
+      "JB721PricingParams": [
+        38307
+      ],
+      "JB721Tier": [
+        38338
+      ],
+      "JB721TierParams": [
+        38369
+      ],
+      "JBBallotState": [
+        49131
+      ],
+      "JBFundingCycle": [
+        52555
+      ],
+      "JBFundingCycleData": [
+        52568
+      ],
+      "JBProjectMetadata": [
+        52681
+      ],
+      "JBTiered721Flags": [
+        38521
+      ],
       "JBTiered721MintForTiersData": [
-        37744
+        38536
       ],
       "JBTiered721MintReservesForTiersData": [
-        37751
+        38543
       ],
       "JBTiered721SetTierDelegatesData": [
-        37758
+        38550
       ]
     },
     "nodeType": "SourceUnit",
-    "src": "32:888:7",
+    "src": "32:882:8",
     "nodes": [
       {
-        "id": 2618,
+        "id": 3259,
         "nodeType": "PragmaDirective",
-        "src": "32:23:7",
+        "src": "32:23:8",
         "nodes": [],
         "literals": [
           "solidity",
@@ -723,66 +723,66 @@
         ]
       },
       {
-        "id": 2619,
+        "id": 3260,
         "nodeType": "ImportDirective",
-        "src": "57:51:7",
+        "src": "57:51:8",
         "nodes": [],
         "absolutePath": "contracts/structs/DefifaTierRedemptionWeight.sol",
         "file": "../structs/DefifaTierRedemptionWeight.sol",
         "nameLocation": "-1:-1:-1",
-        "scope": 2681,
-        "sourceUnit": 2930,
+        "scope": 3322,
+        "sourceUnit": 3722,
         "symbolAliases": [],
         "unitAlias": ""
       },
       {
-        "id": 2620,
+        "id": 3261,
         "nodeType": "ImportDirective",
-        "src": "109:31:7",
+        "src": "109:31:8",
         "nodes": [],
         "absolutePath": "contracts/interfaces/IDefifaDelegate.sol",
         "file": "./IDefifaDelegate.sol",
         "nameLocation": "-1:-1:-1",
-        "scope": 2681,
-        "sourceUnit": 2491,
+        "scope": 3322,
+        "sourceUnit": 3132,
         "symbolAliases": [],
         "unitAlias": ""
       },
       {
-        "id": 2680,
+        "id": 3321,
         "nodeType": "ContractDefinition",
-        "src": "142:777:7",
+        "src": "142:771:8",
         "nodes": [
           {
-            "id": 2625,
+            "id": 3266,
             "nodeType": "FunctionDefinition",
-            "src": "172:65:7",
+            "src": "172:65:8",
             "nodes": [],
             "functionSelector": "4b501fbd",
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "MAX_VOTING_POWER_TIER",
-            "nameLocation": "181:21:7",
+            "nameLocation": "181:21:8",
             "parameters": {
-              "id": 2621,
+              "id": 3262,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "202:2:7"
+              "src": "202:2:8"
             },
             "returnParameters": {
-              "id": 2624,
+              "id": 3265,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2623,
+                  "id": 3264,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2625,
-                  "src": "228:7:7",
+                  "scope": 3266,
+                  "src": "228:7:8",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -790,10 +790,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2622,
+                    "id": 3263,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "228:7:7",
+                    "src": "228:7:8",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -802,43 +802,43 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "227:9:7"
+              "src": "227:9:8"
             },
-            "scope": 2680,
+            "scope": 3321,
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           },
           {
-            "id": 2630,
+            "id": 3271,
             "nodeType": "FunctionDefinition",
-            "src": "241:54:7",
+            "src": "241:54:8",
             "nodes": [],
             "functionSelector": "1d153ca4",
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "codeOrigin",
-            "nameLocation": "250:10:7",
+            "nameLocation": "250:10:8",
             "parameters": {
-              "id": 2626,
+              "id": 3267,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "260:2:7"
+              "src": "260:2:8"
             },
             "returnParameters": {
-              "id": 2629,
+              "id": 3270,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2628,
+                  "id": 3269,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2630,
-                  "src": "286:7:7",
+                  "scope": 3271,
+                  "src": "286:7:8",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -846,10 +846,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2627,
+                    "id": 3268,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "286:7:7",
+                    "src": "286:7:8",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -859,109 +859,109 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "285:9:7"
+              "src": "285:9:8"
             },
-            "scope": 2680,
+            "scope": 3321,
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           },
           {
-            "id": 2636,
+            "id": 3277,
             "nodeType": "FunctionDefinition",
-            "src": "299:66:7",
+            "src": "299:60:8",
             "nodes": [],
-            "functionSelector": "58d5ac0a",
+            "functionSelector": "c89e4361",
             "implemented": false,
             "kind": "function",
             "modifiers": [],
-            "name": "defifaDelegate",
-            "nameLocation": "308:14:7",
+            "name": "delegate",
+            "nameLocation": "308:8:8",
             "parameters": {
-              "id": 2631,
+              "id": 3272,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "322:2:7"
+              "src": "316:2:8"
             },
             "returnParameters": {
-              "id": 2635,
+              "id": 3276,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2634,
+                  "id": 3275,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2636,
-                  "src": "348:15:7",
+                  "scope": 3277,
+                  "src": "342:15:8",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_IDefifaDelegate_$2490",
+                    "typeIdentifier": "t_contract$_IDefifaDelegate_$3131",
                     "typeString": "contract IDefifaDelegate"
                   },
                   "typeName": {
-                    "id": 2633,
+                    "id": 3274,
                     "nodeType": "UserDefinedTypeName",
                     "pathNode": {
-                      "id": 2632,
+                      "id": 3273,
                       "name": "IDefifaDelegate",
                       "nameLocations": [
-                        "348:15:7"
+                        "342:15:8"
                       ],
                       "nodeType": "IdentifierPath",
-                      "referencedDeclaration": 2490,
-                      "src": "348:15:7"
+                      "referencedDeclaration": 3131,
+                      "src": "342:15:8"
                     },
-                    "referencedDeclaration": 2490,
-                    "src": "348:15:7",
+                    "referencedDeclaration": 3131,
+                    "src": "342:15:8",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_IDefifaDelegate_$2490",
+                      "typeIdentifier": "t_contract$_IDefifaDelegate_$3131",
                       "typeString": "contract IDefifaDelegate"
                     }
                   },
                   "visibility": "internal"
                 }
               ],
-              "src": "347:17:7"
+              "src": "341:17:8"
             },
-            "scope": 2680,
+            "scope": 3321,
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           },
           {
-            "id": 2641,
+            "id": 3282,
             "nodeType": "FunctionDefinition",
-            "src": "369:59:7",
+            "src": "363:59:8",
             "nodes": [],
             "functionSelector": "2019a608",
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "votingStartTime",
-            "nameLocation": "378:15:7",
+            "nameLocation": "372:15:8",
             "parameters": {
-              "id": 2637,
+              "id": 3278,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "393:2:7"
+              "src": "387:2:8"
             },
             "returnParameters": {
-              "id": 2640,
+              "id": 3281,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2639,
+                  "id": 3280,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2641,
-                  "src": "419:7:7",
+                  "scope": 3282,
+                  "src": "413:7:8",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -969,10 +969,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2638,
+                    "id": 3279,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "419:7:7",
+                    "src": "413:7:8",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -981,60 +981,60 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "418:9:7"
+              "src": "412:9:8"
             },
-            "scope": 2680,
+            "scope": 3321,
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           },
           {
-            "id": 2649,
+            "id": 3290,
             "nodeType": "FunctionDefinition",
-            "src": "432:88:7",
+            "src": "426:88:8",
             "nodes": [],
             "functionSelector": "cd6dc687",
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "initialize",
-            "nameLocation": "441:10:7",
+            "nameLocation": "435:10:8",
             "parameters": {
-              "id": 2647,
+              "id": 3288,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2644,
+                  "id": 3285,
                   "mutability": "mutable",
                   "name": "_defifaDelegate",
-                  "nameLocation": "468:15:7",
+                  "nameLocation": "462:15:8",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2649,
-                  "src": "452:31:7",
+                  "scope": 3290,
+                  "src": "446:31:8",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_IDefifaDelegate_$2490",
+                    "typeIdentifier": "t_contract$_IDefifaDelegate_$3131",
                     "typeString": "contract IDefifaDelegate"
                   },
                   "typeName": {
-                    "id": 2643,
+                    "id": 3284,
                     "nodeType": "UserDefinedTypeName",
                     "pathNode": {
-                      "id": 2642,
+                      "id": 3283,
                       "name": "IDefifaDelegate",
                       "nameLocations": [
-                        "452:15:7"
+                        "446:15:8"
                       ],
                       "nodeType": "IdentifierPath",
-                      "referencedDeclaration": 2490,
-                      "src": "452:15:7"
+                      "referencedDeclaration": 3131,
+                      "src": "446:15:8"
                     },
-                    "referencedDeclaration": 2490,
-                    "src": "452:15:7",
+                    "referencedDeclaration": 3131,
+                    "src": "446:15:8",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_IDefifaDelegate_$2490",
+                      "typeIdentifier": "t_contract$_IDefifaDelegate_$3131",
                       "typeString": "contract IDefifaDelegate"
                     }
                   },
@@ -1042,13 +1042,13 @@
                 },
                 {
                   "constant": false,
-                  "id": 2646,
+                  "id": 3287,
                   "mutability": "mutable",
                   "name": "_votingStartTime",
-                  "nameLocation": "493:16:7",
+                  "nameLocation": "487:16:8",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2649,
-                  "src": "485:24:7",
+                  "scope": 3290,
+                  "src": "479:24:8",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1056,10 +1056,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2645,
+                    "id": 3286,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "485:7:7",
+                    "src": "479:7:8",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1068,96 +1068,96 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "451:59:7"
+              "src": "445:59:8"
             },
             "returnParameters": {
-              "id": 2648,
+              "id": 3289,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "519:0:7"
+              "src": "513:0:8"
             },
-            "scope": 2680,
+            "scope": 3321,
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
-            "id": 2658,
+            "id": 3299,
             "nodeType": "FunctionDefinition",
-            "src": "524:113:7",
+            "src": "518:113:8",
             "nodes": [],
             "functionSelector": "59f397bd",
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "submitScorecards",
-            "nameLocation": "533:16:7",
+            "nameLocation": "527:16:8",
             "parameters": {
-              "id": 2654,
+              "id": 3295,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2653,
+                  "id": 3294,
                   "mutability": "mutable",
                   "name": "_tierWeights",
-                  "nameLocation": "593:12:7",
+                  "nameLocation": "587:12:8",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2658,
-                  "src": "555:50:7",
+                  "scope": 3299,
+                  "src": "549:50:8",
                   "stateVariable": false,
                   "storageLocation": "calldata",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_array$_t_struct$_DefifaTierRedemptionWeight_$2929_calldata_ptr_$dyn_calldata_ptr",
+                    "typeIdentifier": "t_array$_t_struct$_DefifaTierRedemptionWeight_$3721_calldata_ptr_$dyn_calldata_ptr",
                     "typeString": "struct DefifaTierRedemptionWeight[]"
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 2651,
+                      "id": 3292,
                       "nodeType": "UserDefinedTypeName",
                       "pathNode": {
-                        "id": 2650,
+                        "id": 3291,
                         "name": "DefifaTierRedemptionWeight",
                         "nameLocations": [
-                          "555:26:7"
+                          "549:26:8"
                         ],
                         "nodeType": "IdentifierPath",
-                        "referencedDeclaration": 2929,
-                        "src": "555:26:7"
+                        "referencedDeclaration": 3721,
+                        "src": "549:26:8"
                       },
-                      "referencedDeclaration": 2929,
-                      "src": "555:26:7",
+                      "referencedDeclaration": 3721,
+                      "src": "549:26:8",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_DefifaTierRedemptionWeight_$2929_storage_ptr",
+                        "typeIdentifier": "t_struct$_DefifaTierRedemptionWeight_$3721_storage_ptr",
                         "typeString": "struct DefifaTierRedemptionWeight"
                       }
                     },
-                    "id": 2652,
+                    "id": 3293,
                     "nodeType": "ArrayTypeName",
-                    "src": "555:28:7",
+                    "src": "549:28:8",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_array$_t_struct$_DefifaTierRedemptionWeight_$2929_storage_$dyn_storage_ptr",
+                      "typeIdentifier": "t_array$_t_struct$_DefifaTierRedemptionWeight_$3721_storage_$dyn_storage_ptr",
                       "typeString": "struct DefifaTierRedemptionWeight[]"
                     }
                   },
                   "visibility": "internal"
                 }
               ],
-              "src": "549:60:7"
+              "src": "543:60:8"
             },
             "returnParameters": {
-              "id": 2657,
+              "id": 3298,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2656,
+                  "id": 3297,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2658,
-                  "src": "628:7:7",
+                  "scope": 3299,
+                  "src": "622:7:8",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1165,10 +1165,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2655,
+                    "id": 3296,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "628:7:7",
+                    "src": "622:7:8",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1177,37 +1177,37 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "627:9:7"
+              "src": "621:9:8"
             },
-            "scope": 2680,
+            "scope": 3321,
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
-            "id": 2663,
+            "id": 3304,
             "nodeType": "FunctionDefinition",
-            "src": "641:58:7",
+            "src": "635:58:8",
             "nodes": [],
             "functionSelector": "19f82536",
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "attestToScorecard",
-            "nameLocation": "650:17:7",
+            "nameLocation": "644:17:8",
             "parameters": {
-              "id": 2661,
+              "id": 3302,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2660,
+                  "id": 3301,
                   "mutability": "mutable",
                   "name": "_scorecardId",
-                  "nameLocation": "676:12:7",
+                  "nameLocation": "670:12:8",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2663,
-                  "src": "668:20:7",
+                  "scope": 3304,
+                  "src": "662:20:8",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1215,10 +1215,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2659,
+                    "id": 3300,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "668:7:7",
+                    "src": "662:7:8",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1227,43 +1227,43 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "667:22:7"
+              "src": "661:22:8"
             },
             "returnParameters": {
-              "id": 2662,
+              "id": 3303,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "698:0:7"
+              "src": "692:0:8"
             },
-            "scope": 2680,
+            "scope": 3321,
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
-            "id": 2670,
+            "id": 3311,
             "nodeType": "FunctionDefinition",
-            "src": "703:98:7",
+            "src": "697:98:8",
             "nodes": [],
             "functionSelector": "7c8bd0ed",
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "attestToScorecardWithReasonAndParams",
-            "nameLocation": "712:36:7",
+            "nameLocation": "706:36:8",
             "parameters": {
-              "id": 2668,
+              "id": 3309,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2665,
+                  "id": 3306,
                   "mutability": "mutable",
                   "name": "_scorecardId",
-                  "nameLocation": "757:12:7",
+                  "nameLocation": "751:12:8",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2670,
-                  "src": "749:20:7",
+                  "scope": 3311,
+                  "src": "743:20:8",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1271,10 +1271,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2664,
+                    "id": 3305,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "749:7:7",
+                    "src": "743:7:8",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1284,13 +1284,13 @@
                 },
                 {
                   "constant": false,
-                  "id": 2667,
+                  "id": 3308,
                   "mutability": "mutable",
                   "name": "params",
-                  "nameLocation": "784:6:7",
+                  "nameLocation": "778:6:8",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2670,
-                  "src": "771:19:7",
+                  "scope": 3311,
+                  "src": "765:19:8",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -1298,10 +1298,10 @@
                     "typeString": "bytes"
                   },
                   "typeName": {
-                    "id": 2666,
+                    "id": 3307,
                     "name": "bytes",
                     "nodeType": "ElementaryTypeName",
-                    "src": "771:5:7",
+                    "src": "765:5:8",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes_storage_ptr",
                       "typeString": "bytes"
@@ -1310,96 +1310,96 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "748:43:7"
+              "src": "742:43:8"
             },
             "returnParameters": {
-              "id": 2669,
+              "id": 3310,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "800:0:7"
+              "src": "794:0:8"
             },
-            "scope": 2680,
+            "scope": 3321,
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
-            "id": 2679,
+            "id": 3320,
             "nodeType": "FunctionDefinition",
-            "src": "805:112:7",
+            "src": "799:112:8",
             "nodes": [],
             "functionSelector": "64d87a61",
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "ratifyScorecard",
-            "nameLocation": "814:15:7",
+            "nameLocation": "808:15:8",
             "parameters": {
-              "id": 2675,
+              "id": 3316,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2674,
+                  "id": 3315,
                   "mutability": "mutable",
                   "name": "_tierWeights",
-                  "nameLocation": "873:12:7",
+                  "nameLocation": "867:12:8",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2679,
-                  "src": "835:50:7",
+                  "scope": 3320,
+                  "src": "829:50:8",
                   "stateVariable": false,
                   "storageLocation": "calldata",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_array$_t_struct$_DefifaTierRedemptionWeight_$2929_calldata_ptr_$dyn_calldata_ptr",
+                    "typeIdentifier": "t_array$_t_struct$_DefifaTierRedemptionWeight_$3721_calldata_ptr_$dyn_calldata_ptr",
                     "typeString": "struct DefifaTierRedemptionWeight[]"
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 2672,
+                      "id": 3313,
                       "nodeType": "UserDefinedTypeName",
                       "pathNode": {
-                        "id": 2671,
+                        "id": 3312,
                         "name": "DefifaTierRedemptionWeight",
                         "nameLocations": [
-                          "835:26:7"
+                          "829:26:8"
                         ],
                         "nodeType": "IdentifierPath",
-                        "referencedDeclaration": 2929,
-                        "src": "835:26:7"
+                        "referencedDeclaration": 3721,
+                        "src": "829:26:8"
                       },
-                      "referencedDeclaration": 2929,
-                      "src": "835:26:7",
+                      "referencedDeclaration": 3721,
+                      "src": "829:26:8",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_DefifaTierRedemptionWeight_$2929_storage_ptr",
+                        "typeIdentifier": "t_struct$_DefifaTierRedemptionWeight_$3721_storage_ptr",
                         "typeString": "struct DefifaTierRedemptionWeight"
                       }
                     },
-                    "id": 2673,
+                    "id": 3314,
                     "nodeType": "ArrayTypeName",
-                    "src": "835:28:7",
+                    "src": "829:28:8",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_array$_t_struct$_DefifaTierRedemptionWeight_$2929_storage_$dyn_storage_ptr",
+                      "typeIdentifier": "t_array$_t_struct$_DefifaTierRedemptionWeight_$3721_storage_$dyn_storage_ptr",
                       "typeString": "struct DefifaTierRedemptionWeight[]"
                     }
                   },
                   "visibility": "internal"
                 }
               ],
-              "src": "829:60:7"
+              "src": "823:60:8"
             },
             "returnParameters": {
-              "id": 2678,
+              "id": 3319,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2677,
+                  "id": 3318,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2679,
-                  "src": "908:7:7",
+                  "scope": 3320,
+                  "src": "902:7:8",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1407,10 +1407,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2676,
+                    "id": 3317,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "908:7:7",
+                    "src": "902:7:8",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1419,9 +1419,9 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "907:9:7"
+              "src": "901:9:8"
             },
-            "scope": 2680,
+            "scope": 3321,
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
@@ -1434,15 +1434,15 @@
         "contractKind": "interface",
         "fullyImplemented": false,
         "linearizedBaseContracts": [
-          2680
+          3321
         ],
         "name": "IDefifaGovernor",
-        "nameLocation": "152:15:7",
-        "scope": 2681,
+        "nameLocation": "152:15:8",
+        "scope": 3322,
         "usedErrors": []
       }
     ],
     "license": "MIT"
   },
-  "id": 7
+  "id": 8
 }

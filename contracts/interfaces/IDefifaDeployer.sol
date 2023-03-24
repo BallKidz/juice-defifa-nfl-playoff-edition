@@ -13,6 +13,12 @@ interface IDefifaDeployer {
 
   function SPLIT_DOMAIN() external view returns (uint256);
 
+  function delegateCodeOrigin() external view returns (address);
+
+  function governorCodeOrigin() external view returns (address);
+
+  function tokenUriResolverCodeOrigin() external view returns (address);
+
   function controller() external view returns (IJBController3_1);
 
   function protocolFeeProjectTokenAccount() external view returns (address);

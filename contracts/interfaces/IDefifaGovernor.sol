@@ -9,7 +9,7 @@ interface IDefifaGovernor {
 
   function codeOrigin() external view returns (address);
 
-  function defifaDelegate() external view returns (IDefifaDelegate);
+  function delegate() external view returns (IDefifaDelegate);
 
   function votingStartTime() external view returns (uint256);
 

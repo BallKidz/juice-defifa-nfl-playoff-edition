@@ -1,13 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.16;
 
-import '@openzeppelin/contracts/utils/Strings.sol';
 import '@jbx-protocol/juice-721-delegate/contracts/JB721TieredGovernance.sol';
 import '@jbx-protocol/juice-contracts-v3/contracts/interfaces/IJBSingleTokenPaymentTerminal.sol';
-import 'lib/base64/base64.sol';
 
 import './interfaces/IDefifaDelegate.sol';
-import './libraries/DefifaFontImporter.sol';
 
 /** 
   @title
@@ -25,8 +22,6 @@ import './libraries/DefifaFontImporter.sol';
   JB721TieredGovernance: A generic tiered 721 delegate.
 */
 contract DefifaDelegate is IDefifaDelegate, JB721TieredGovernance {
-  using Strings for uint256;
-
   //*********************************************************************//
   // --------------------------- custom errors ------------------------- //
   //*********************************************************************//
@@ -51,12 +46,6 @@ contract DefifaDelegate is IDefifaDelegate, JB721TieredGovernance {
     The funding cycle number of the end game phase. 
   */
   uint256 private constant _END_GAME_PHASE = 4;
-
-  /** 
-    @notice
-    The fidelity of the decimal returned in the NFT image.
-  */
-  uint256 private constant _IMG_DECIMAL_FIDELITY = 8;
 
   //*********************************************************************//
   // --------------------- public constant properties ------------------ //
@@ -107,7 +96,17 @@ contract DefifaDelegate is IDefifaDelegate, JB721TieredGovernance {
 
   /** 
     @notice
-    The name of the tier with the specified ID
+    The name of the NFT.
+
+    @return The name of the NFT.
+  */
+  function name() public view override(ERC721, IDefifaDelegate) returns (string memory) {
+    return super.name();
+  }
+
+  /** 
+    @notice
+    The name of the tier with the specified ID.
 
     @param _tierId The ID of the tier to get the name of.
 
@@ -217,7 +216,7 @@ contract DefifaDelegate is IDefifaDelegate, JB721TieredGovernance {
 
     for (uint256 _i; _i < _tokenCount; ) {
       // Calculate what percentage of the tier redemption amount a single token counts for.
-      cumulativeWeight += _redemptionWeightOf(_tokenIds[_i]);
+      cumulativeWeight += redemptionWeightOf(_tokenIds[_i]);
 
       unchecked {
         ++_i;
@@ -241,97 +240,30 @@ contract DefifaDelegate is IDefifaDelegate, JB721TieredGovernance {
     return TOTAL_REDEMPTION_WEIGHT;
   }
 
-  /**
+  //*********************************************************************//
+  // -------------------------- public views --------------------------- //
+  //*********************************************************************//
+
+  /** 
     @notice
-    The metadata URI of the provided token ID.
+    The weight the given token ID have in redemptions. 
 
-    @dev
-    Defer to the tokenUriResolver if set, otherwise, use the tokenUri set with the token's tier.
+    @param _tokenId The ID of the token to get the redemption weight of.
 
-    @param _tokenId The ID of the token to get the tier URI for.
-
-    @return uri The token URI corresponding with the tier or the tokenUriResolver URI.
+    @return The weight.
   */
-  function tokenURI(uint256 _tokenId) public view override returns (string memory uri) {
-    // Check to see if the superclass has a token URI. Return it if it does.
-    uri = super.tokenURI(_tokenId);
-    if (bytes(uri).length != 0) return uri;
+  function redemptionWeightOf(uint256 _tokenId) public view override returns (uint256) {
+    // Keep a reference to the token's tier ID.
+    uint256 _tierId = store.tierIdOfToken(_tokenId);
 
-    // Get a reference to the tier.
-    JB721Tier memory _tier = store.tierOfTokenId(address(this), _tokenId);
+    // Keep a reference to the tier.
+    JB721Tier memory _tier = store.tier(address(this), _tierId);
 
-    _tokenId; // do something with me
-    string[] memory parts = new string[](4);
-    parts[0] = string('data:application/json;base64,');
-    string memory _title = name();
-    string memory _team = _tierNameOf[_tier.id];
-
-    parts[1] = string(
-      abi.encodePacked(
-        '{"name":"',
-        _title,
-        '","description":"Team ',
-        _team,
-        ' with ID ',
-        _tier.id,
-        '",',
-        '"image":"data:image/svg+xml;base64,'
-      )
-    );
-    string memory _titleFontSize;
-    if (bytes(_title).length < 35) _titleFontSize = '24';
-    else _titleFontSize = '20';
-
-    string memory _fontSize;
-    if (bytes(_team).length < 3) _fontSize = '240';
-    else if (bytes(_team).length < 5) _fontSize = '200';
-    else if (bytes(_team).length < 8) _fontSize = '140';
-    else if (bytes(_team).length < 10) _fontSize = '90';
-    else if (bytes(_team).length < 12) _fontSize = '80';
-    else if (bytes(_team).length < 16) _fontSize = '60';
-    else if (bytes(_team).length < 23) _fontSize = '40';
-    else if (bytes(_team).length < 30) _fontSize = '30';
-    else if (bytes(_team).length < 35) _fontSize = '20';
-    else _fontSize = '16';
-
-    parts[2] = Base64.encode(
-      abi.encodePacked(
-        '<svg width="500" height="500" viewBox="0 0 100% 100%" xmlns="http://www.w3.org/2000/svg">',
-        '<style>@font-face{font-family:"Capsules-300";src:url(data:font/truetype;charset=utf-8;base64,',
-        DefifaFontImporter.getSkinnyFontSource(),
-        ');format("opentype");}',
-        '@font-face{font-family:"Capsules-700";src:url(data:font/truetype;charset=utf-8;base64,',
-        DefifaFontImporter.getBeefyFontSource(),
-        ');format("opentype");}',
-        'text{fill:#c0b3f1;white-space:pre-wrap; width:100%; }</style>',
-        '<rect width="100vw" height="100vh" fill="#181424"/>',
-        '<text x="10" y="40" style="font-size:',
-        _titleFontSize,
-        'px; font-family: Capsules-300; font-weight:300;">',
-        _title,
-        '</text>',
-        '<text x="10" y="60" style="font-size:16px; font-family: Capsules-300; font-weight:300; fill: #393059;">GAME ID: ',
-        projectId,
-        '</text>',
-        '<text x="10" y="440" style="font-size:16px; font-family: Capsules-300; font-weight:300; fill: #393059;">TOKEN ID:',
-        _tokenId,
-        '</text>',
-        '<text x="10" y="460" style="font-size:16px; font-family: Capsules-300; font-weight:300; fill: #393059;">VALUE: ~',
-        _getFormattedPercentageOfRedemptionWeight(_redemptionWeightOf(_tokenId)),
-        ' of pot</text>',
-        '<text x="10" y="480" style="font-size:16px; font-family: Capsules-300; font-weight:300; fill: #393059;">RARITY: 1/',
-        _tier.initialQuantity - _tier.remainingQuantity,
-        '</text>',
-        '<text textLength="500" lengthAdjust="spacing" x="50%" y="50%" style="font-size:',
-        _fontSize,
-        'px; font-family: Capsules-700; font-weight:700; text-anchor:middle; dominant-baseline:middle; ">',
-        _team,
-        '</text>',
-        '</svg>'
-      )
-    );
-    parts[3] = string('"}');
-    uri = string.concat(parts[0], Base64.encode(abi.encodePacked(parts[1], parts[2], parts[3])));
+    // Calculate what percentage of the tier redemption amount a single token counts for.
+    return
+      // Tier's are 1 indexed and are stored 0 indexed.
+      _tierRedemptionWeights[_tierId - 1] /
+      (_tier.initialQuantity - _tier.remainingQuantity + _redeemedFromTier[_tierId]);
   }
 
   //*********************************************************************//
@@ -510,28 +442,6 @@ contract DefifaDelegate is IDefifaDelegate, JB721TieredGovernance {
   // ------------------------ internal functions ----------------------- //
   //*********************************************************************//
 
-  /** 
-    @notice
-    The weight the given token ID have in redemptions compared to the `_totalRedemptionWeight`. 
-
-    @param _tokenId The ID of the token to get the redemption weight of.
-
-    @return The weight.
-  */
-  function _redemptionWeightOf(uint256 _tokenId) private view returns (uint256) {
-    // Keep a reference to the token's tier ID.
-    uint256 _tierId = store.tierIdOfToken(_tokenId);
-
-    // Keep a reference to the tier.
-    JB721Tier memory _tier = store.tier(address(this), _tierId);
-
-    // Calculate what percentage of the tier redemption amount a single token counts for.
-    return
-      // Tier's are 1 indexed and are stored 0 indexed.
-      _tierRedemptionWeights[_tierId - 1] /
-      (_tier.initialQuantity - _tier.remainingQuantity + _redeemedFromTier[_tierId]);
-  }
-
   /**
    @notice
    handles the tier voting accounting
@@ -558,41 +468,5 @@ contract DefifaDelegate is IDefifaDelegate, JB721TieredGovernance {
       // Transfer the voting units.
       _transferTierVotingUnits(_from, _to, _tier.id, _tier.votingUnits);
     }
-  }
-
-  /** 
-    @notice
-    A string representation of the percent of the given value to the total redemption weight. 
-
-    @param _value The value to convert into a percentage of the total redemption weight.
-
-    @return The formatted percent string.
-  */
-  function _getFormattedPercentageOfRedemptionWeight(
-    uint256 _value
-  ) private pure returns (string memory) {
-    uint256 quotient = (_value * TOTAL_REDEMPTION_WEIGHT * (10 ^ _IMG_DECIMAL_FIDELITY)) /
-      TOTAL_REDEMPTION_WEIGHT; // Multiply to the order of _IMG_DECIMAL_FIDELITY for extra decimal place precision)
-    uint256 integerPart = quotient / 10000; // Extract the integer part
-    uint256 decimalPart = quotient % 10000; // Extract the decimal part
-
-    // Concatenate the integer and decimal parts with a decimal point
-    return
-      string(abi.encodePacked(integerPart.toString(), '.', _formatDecimalPart(decimalPart), '%'));
-  }
-
-  /** 
-    @notice
-    A formatted decimal component to a number.
-
-    @param _value The decimal value to format.
-
-    @return strValue The formatted string.
-  */
-  function _formatDecimalPart(uint256 _value) private pure returns (string memory strValue) {
-    strValue = _value.toString();
-    // Add leading zeros if necessary
-    for (uint256 i = bytes(strValue).length; i < _IMG_DECIMAL_FIDELITY; i++)
-      strValue = string(abi.encodePacked('0', strValue));
   }
 }

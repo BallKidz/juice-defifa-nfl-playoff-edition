@@ -6,11 +6,15 @@ import '@jbx-protocol/juice-721-delegate/contracts/interfaces/IJB721TieredGovern
 import './../structs/DefifaTierRedemptionWeight.sol';
 
 interface IDefifaDelegate is IJB721TieredGovernance {
-  function TOTAL_REDEMPTION_WEIGHT() external returns (uint256);
+  function TOTAL_REDEMPTION_WEIGHT() external view returns (uint256);
+
+  function name() external view returns (string memory);
 
   function tierNameOf(uint256 _tierId) external view returns (string memory);
 
-  function tierRedemptionWeights() external returns (uint256[128] memory);
+  function redemptionWeightOf(uint256 _tokenId) external view returns (uint256);
+
+  function tierRedemptionWeights() external view returns (uint256[128] memory);
 
   function setTierRedemptionWeights(DefifaTierRedemptionWeight[] memory _tierWeights) external;
 

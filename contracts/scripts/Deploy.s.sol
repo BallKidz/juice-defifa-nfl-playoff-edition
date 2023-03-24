@@ -5,6 +5,7 @@ import '@jbx-protocol/juice-contracts-v3/contracts/libraries/JBTokens.sol';
 import '@jbx-protocol/juice-721-delegate/contracts/interfaces/IJBTiered721DelegateStore.sol';
 import '../DefifaDeployer.sol';
 import '../DefifaGovernor.sol';
+import '../DefifaTokenUriResolver.sol';
 import 'forge-std/Script.sol';
 
 contract DeployMainnet is Script {
@@ -22,10 +23,14 @@ contract DeployMainnet is Script {
     // Deploy the codeOrigin for the governor.
     DefifaGovernor _defifaGovernorCodeOrigin = new DefifaGovernor();
 
+    // Deploy the codeOrigin for the token uri resolver.
+    DefifaTokenUriResolver _defifaTokenUriResolverCodeOrigin = new DefifaTokenUriResolver();
+
     // Deploy the deployer.
     DefifaDeployer _defifaDeployer = new DefifaDeployer(
       address(_defifaDelegateCodeOrigin),
       address(_defifaGovernorCodeOrigin),
+      address(_defifaTokenUriResolverCodeOrigin),
       controller,
       _defifaBallkidz
     );
@@ -49,10 +54,14 @@ contract DeployGoerli is Script {
     // Deploy the codeOrigin for the governor.
     DefifaGovernor _defifaGovernorCodeOrigin = new DefifaGovernor();
 
+    // Deploy the codeOrigin for the token uri resolver.
+    DefifaTokenUriResolver _defifaTokenUriResolverCodeOrigin = new DefifaTokenUriResolver();
+
     // Deploy the deployer.
     DefifaDeployer _defifaDeployer = new DefifaDeployer(
       address(_defifaDelegateCodeOrigin),
       address(_defifaGovernorCodeOrigin),
+      address(_defifaTokenUriResolverCodeOrigin),
       controller,
       _defifaBallkidz
     );

@@ -53,6 +53,7 @@ contract DefifaGovernor is Governor, GovernorCountingSimple, IDefifaGovernor {
   //*********************************************************************//
   // --------------- public immutable stored properties ---------------- //
   //*********************************************************************//
+
   /**
     @notice
     The address of the origin 'DefifaGovernor', used to check in the init if the contract is the original or not
@@ -67,7 +68,7 @@ contract DefifaGovernor is Governor, GovernorCountingSimple, IDefifaGovernor {
     @notice
     The Defifa delegate contract that this contract is Governing.
   */
-  IDefifaDelegate public override defifaDelegate;
+  IDefifaDelegate public override delegate;
 
   /** 
     @notice
@@ -91,20 +92,17 @@ contract DefifaGovernor is Governor, GovernorCountingSimple, IDefifaGovernor {
     @notice
     Initializes the contract.
 
-    @param _defifaDelegate The Defifa delegate contract that this contract is Governing.
+    @param _delegate The Defifa delegate contract that this contract is Governing.
     @param _votingStartTime Voting start time .
   */
-  function initialize(
-    IDefifaDelegate _defifaDelegate,
-    uint256 _votingStartTime
-  ) public virtual override {
+  function initialize(IDefifaDelegate _delegate, uint256 _votingStartTime) public virtual override {
     // Make the original un-initializable.
     if (address(this) == codeOrigin) revert();
 
     // Stop re-initialization.
-    if (address(defifaDelegate) != address(0)) revert();
+    if (address(delegate) != address(0)) revert();
 
-    defifaDelegate = _defifaDelegate;
+    delegate = _delegate;
     votingStartTime = _votingStartTime;
   }
 
@@ -196,7 +194,7 @@ contract DefifaGovernor is Governor, GovernorCountingSimple, IDefifaGovernor {
   ) internal view returns (address[] memory, uint256[] memory, bytes[] memory) {
     // Set the one target to be the delegate's address.
     address[] memory _targets = new address[](1);
-    _targets[0] = address(defifaDelegate);
+    _targets[0] = address(delegate);
 
     // There are no values sent.
     uint256[] memory _values = new uint256[](1);
@@ -252,11 +250,7 @@ contract DefifaGovernor is Governor, GovernorCountingSimple, IDefifaGovernor {
       _prevTierId = _tierId;
 
       // Keep a reference to the number of tier votes for the account.
-      uint256 _tierVotesForAccount = defifaDelegate.getPastTierVotes(
-        _account,
-        _tierId,
-        _blockNumber
-      );
+      uint256 _tierVotesForAccount = delegate.getPastTierVotes(_account, _tierId, _blockNumber);
 
       // If there is tier voting power, increment the result by the proportion of votes the account has to the total, multiplied by the tier's maximum vote power.
       unchecked {
@@ -264,7 +258,7 @@ contract DefifaGovernor is Governor, GovernorCountingSimple, IDefifaGovernor {
           votingPower += PRBMath.mulDiv(
             MAX_VOTING_POWER_TIER,
             _tierVotesForAccount,
-            defifaDelegate.getPastTierTotalVotes(_tierId, _blockNumber)
+            delegate.getPastTierTotalVotes(_tierId, _blockNumber)
           );
       }
 
@@ -280,7 +274,7 @@ contract DefifaGovernor is Governor, GovernorCountingSimple, IDefifaGovernor {
   */
   function _defaultParams() internal view virtual override returns (bytes memory) {
     // Get a reference to the number of tiers.
-    uint256 _count = defifaDelegate.store().maxTierIdOf(address(defifaDelegate));
+    uint256 _count = delegate.store().maxTierIdOf(address(delegate));
 
     // Initialize an array to store the IDs.
     uint256[] memory _ids = new uint256[](_count);
@@ -330,8 +324,7 @@ contract DefifaGovernor is Governor, GovernorCountingSimple, IDefifaGovernor {
     The number of voting units that must have participated in a vote for it to be ratified. 
   */
   function quorum(uint256) public view override(IGovernor) returns (uint256) {
-    return
-      (defifaDelegate.store().maxTierIdOf(address(defifaDelegate)) / 2) * MAX_VOTING_POWER_TIER;
+    return (delegate.store().maxTierIdOf(address(delegate)) / 2) * MAX_VOTING_POWER_TIER;
   }
 
   // Required override.

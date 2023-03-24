@@ -4,6 +4,7 @@ pragma solidity ^0.8.16;
 import '@openzeppelin/contracts/proxy/Clones.sol';
 import '@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol';
 import '@jbx-protocol/juice-contracts-v3/contracts/libraries/JBConstants.sol';
+import '@jbx-protocol/juice-contracts-v3/contracts/libraries/JBTokens.sol';
 import '@jbx-protocol/juice-contracts-v3/contracts/libraries/JBSplitsGroups.sol';
 import '@jbx-protocol/juice-contracts-v3/contracts/structs/JBFundAccessConstraints.sol';
 import '@jbx-protocol/juice-721-delegate/contracts/libraries/JBTiered721FundingCycleMetadataResolver.sol';
@@ -11,6 +12,7 @@ import './interfaces/IDefifaDeployer.sol';
 import './structs/DefifaStoredOpsData.sol';
 import './DefifaDelegate.sol';
 import './DefifaGovernor.sol';
+import './DefifaTokenUriResolver.sol';
 
 /**
   @title
@@ -97,13 +99,19 @@ contract DefifaDeployer is IDefifaDeployer, IERC721Receiver {
     @notice 
     The original code for the Defifa delegate to base subsequent instances on.
    */
-  address public immutable delegateCodeOrigin;
+  address public immutable override delegateCodeOrigin;
 
   /**
     @notice 
     The original code for the Defifa governor to base subsequent instances on.
    */
-  address public immutable governorCodeOrigin;
+  address public immutable override governorCodeOrigin;
+
+  /**
+    @notice 
+    The original code for the Defifa token URI resolver to base subsequent instances on.
+  */
+  address public immutable override tokenUriResolverCodeOrigin;
 
   /**
     @notice
@@ -197,17 +205,20 @@ contract DefifaDeployer is IDefifaDeployer, IERC721Receiver {
   /**
     @param _delegateCodeOrigin The code of the Defifa delegate.
     @param _governorCodeOrigin The code of the Defifa governor.
-    @param _controller The controller with which new projects should be deployed. 
+    @param _tokenUriResolverCodeOrigin The token URI resolver with which new projects should be deployed. 
+    @param _controller The controller to use to launch the game from.
     @param _protocolFeeProjectTokenAccount The address that should be forwarded JBX accumulated in this contract from game fund distributions. 
   */
   constructor(
     address _delegateCodeOrigin,
     address _governorCodeOrigin,
+    address _tokenUriResolverCodeOrigin,
     IJBController3_1 _controller,
     address _protocolFeeProjectTokenAccount
   ) {
     delegateCodeOrigin = _delegateCodeOrigin;
     governorCodeOrigin = _governorCodeOrigin;
+    tokenUriResolverCodeOrigin = _tokenUriResolverCodeOrigin;
     controller = _controller;
     protocolFeeProjectTokenAccount = _protocolFeeProjectTokenAccount;
   }
@@ -285,8 +296,9 @@ contract DefifaDeployer is IDefifaDeployer, IERC721Receiver {
         prices: IJBPrices(address(0))
       });
 
-    // Clone and initialize the new delegate
+    // Clone and initialize the new delegate with a new token uri resolver.
     DefifaDelegate _delegate = DefifaDelegate(Clones.clone(delegateCodeOrigin));
+    DefifaTokenUriResolver _uriResolver = DefifaTokenUriResolver(Clones.clone(tokenUriResolverCodeOrigin));
     _delegate.initialize(
       gameId,
       controller.directory(),
@@ -294,7 +306,7 @@ contract DefifaDeployer is IDefifaDeployer, IERC721Receiver {
       _delegateData.symbol,
       controller.fundingCycleStore(),
       _delegateData.baseUri,
-      IJBTokenUriResolver(address(0)),
+      _uriResolver,
       _delegateData.contractUri,
       _pricingParams,
       _delegateData.store,
@@ -306,6 +318,7 @@ contract DefifaDeployer is IDefifaDeployer, IERC721Receiver {
       }),
       _delegateData.tierNames
     );
+    _uriResolver.initialize(_delegate);
 
     // Make sure the provided terminal accepts the same currency as this game is being played in.
     if (!_launchProjectData.terminal.acceptsToken(_launchProjectData.token, gameId)) revert UNEXPECTED_TERMINAL_CURRENCY();
@@ -558,7 +571,8 @@ contract DefifaDeployer is IDefifaDeployer, IERC721Receiver {
 
     if (_splits.length != 0) {
       _groupedSplits = new JBGroupedSplits[](1);
-      _groupedSplits[0] = JBGroupedSplits({group: JBSplitsGroups.ETH_PAYOUT, splits: _splits});
+      uint256 _group = _ops.token == JBTokens.ETH ? JBSplitsGroups.ETH_PAYOUT : uint160(_ops.token);
+      _groupedSplits[0] = JBGroupedSplits({group: _group, splits: _splits});
     }
     else {
       _groupedSplits = new JBGroupedSplits[](0);
