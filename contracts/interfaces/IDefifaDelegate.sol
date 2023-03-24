@@ -12,18 +12,18 @@ interface IDefifaDelegate is IJB721TieredGovernance {
 
   function setTierRedemptionWeights(DefifaTierRedemptionWeight[] memory _tierWeights) external;
 
-  function initialize(
-    uint256 _projectId,
-    IJBDirectory _directory,
-    string memory _name,
-    string memory _symbol,
-    IJBFundingCycleStore _fundingCycleStore,
-    string memory _baseUri,
-    IJBTokenUriResolver _tokenUriResolver,
-    string memory _contractUri,
-    JB721PricingParams memory _pricing,
-    IJBTiered721DelegateStore _store,
-    JBTiered721Flags memory _flags,
-    string[] memory _tierNames
-  ) external;
+  // function initialize(
+  //   uint256 _projectId,
+  //   IJBDirectory _directory,
+  //   string memory _name,
+  //   string memory _symbol,
+  //   IJBFundingCycleStore _fundingCycleStore,
+  //   string memory _baseUri,
+  //   IJBTokenUriResolver _tokenUriResolver,
+  //   string memory _contractUri,
+  //   JB721PricingParams memory _pricing,
+  //   IJBTiered721DelegateStore _store,
+  //   JBTiered721Flags memory _flags,
+  //   string[] memory _tierNames
+  // ) external;
 }

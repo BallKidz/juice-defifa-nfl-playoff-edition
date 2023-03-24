@@ -53,37 +53,60 @@ contract DefifaGovernor is Governor, GovernorCountingSimple, IDefifaGovernor {
   //*********************************************************************//
   // --------------- public immutable stored properties ---------------- //
   //*********************************************************************//
+  /**
+    @notice
+    The address of the origin 'DefifaGovernor', used to check in the init if the contract is the original or not
+  */
+  address public immutable override codeOrigin;
+
+  //*********************************************************************//
+  // -------------------- public stored properties --------------------- //
+  //*********************************************************************//
 
   /** 
     @notice
     The Defifa delegate contract that this contract is Governing.
   */
-  IDefifaDelegate public immutable override defifaDelegate;
+  IDefifaDelegate public override defifaDelegate;
 
   /** 
     @notice
     Voting start timestamp after which voting can begin.
   */
-  uint256 public immutable override votingStartTime;
+  uint256 public override votingStartTime;
 
   //*********************************************************************//
   // -------------------------- constructor ---------------------------- //
   //*********************************************************************//
 
-  /**     
-    @param _defifaDelegate The Defifa delegate contract that this contract is Governing.
-    @param _votingStartTime Voting start time .
-  */
-  constructor(IDefifaDelegate _defifaDelegate, uint256 _votingStartTime)
-    Governor('DefifaGovernor')
-  {
-    defifaDelegate = _defifaDelegate;
-    votingStartTime = _votingStartTime;
+  constructor() Governor('DefifaGovernor') {
+    codeOrigin = address(this);
   }
 
   //*********************************************************************//
   // ---------------------- external transactions ---------------------- //
   //*********************************************************************//
+
+  /**     
+    @notice
+    Initializes the contract.
+
+    @param _defifaDelegate The Defifa delegate contract that this contract is Governing.
+    @param _votingStartTime Voting start time .
+  */
+  function initialize(
+    IDefifaDelegate _defifaDelegate,
+    uint256 _votingStartTime
+  ) public virtual override {
+    // Make the original un-initializable.
+    if (address(this) == codeOrigin) revert();
+
+    // Stop re-initialization.
+    if (address(defifaDelegate) != address(0)) revert();
+
+    defifaDelegate = _defifaDelegate;
+    votingStartTime = _votingStartTime;
+  }
 
   /**
     @notice
@@ -93,11 +116,9 @@ contract DefifaGovernor is Governor, GovernorCountingSimple, IDefifaGovernor {
 
     @return The proposal ID. 
   */
-  function submitScorecards(DefifaTierRedemptionWeight[] calldata _tierWeights)
-    external
-    override
-    returns (uint256)
-  {
+  function submitScorecards(
+    DefifaTierRedemptionWeight[] calldata _tierWeights
+  ) external override returns (uint256) {
     // Build the calldata normalized such that the Governor contract accepts.
     (
       address[] memory _targets,
@@ -126,7 +147,10 @@ contract DefifaGovernor is Governor, GovernorCountingSimple, IDefifaGovernor {
 
     @param _scorecardId The scorecard ID. 
   */
-  function attestToScorecardWithReasonAndParams(uint256 _scorecardId, bytes memory params) external override {
+  function attestToScorecardWithReasonAndParams(
+    uint256 _scorecardId,
+    bytes memory params
+  ) external override {
     // Vote.
     super._castVote(_scorecardId, msg.sender, 1, '', params);
   }
@@ -139,11 +163,9 @@ contract DefifaGovernor is Governor, GovernorCountingSimple, IDefifaGovernor {
 
     @return The proposal ID. 
   */
-  function ratifyScorecard(DefifaTierRedemptionWeight[] calldata _tierWeights)
-    external
-    override
-    returns (uint256)
-  {
+  function ratifyScorecard(
+    DefifaTierRedemptionWeight[] calldata _tierWeights
+  ) external override returns (uint256) {
     // Build the calldata to the delegate
     (
       address[] memory _targets,
@@ -169,15 +191,9 @@ contract DefifaGovernor is Governor, GovernorCountingSimple, IDefifaGovernor {
     @return The values to send allongside the transactions.
     @return The calldata to send allongside the transactions.
   */
-  function _buildScorecardCalldata(DefifaTierRedemptionWeight[] calldata _tierWeights)
-    internal
-    view
-    returns (
-      address[] memory,
-      uint256[] memory,
-      bytes[] memory
-    )
-  {
+  function _buildScorecardCalldata(
+    DefifaTierRedemptionWeight[] calldata _tierWeights
+  ) internal view returns (address[] memory, uint256[] memory, bytes[] memory) {
     // Set the one target to be the delegate's address.
     address[] memory _targets = new address[](1);
     _targets[0] = address(defifaDelegate);
@@ -331,8 +347,7 @@ contract DefifaGovernor is Governor, GovernorCountingSimple, IDefifaGovernor {
     string memory description
   ) public override(Governor) returns (uint256) {
     // We don't allow submitting proposals other than scorecards
-    if (_msgSender() != address(this))
-      revert DISABLED();
+    if (_msgSender() != address(this)) revert DISABLED();
 
     return super.propose(targets, values, calldatas, description);
   }

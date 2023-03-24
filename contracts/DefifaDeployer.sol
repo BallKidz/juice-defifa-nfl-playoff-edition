@@ -78,7 +78,7 @@ contract DefifaDeployer is IDefifaDeployer, IERC721Receiver {
     @dev
     The owner of this project ID must give this contract operator permissions over the SET_SPLITS operation.
   */
-  uint256 public constant override SPLIT_PROJECT_ID = 1;
+  uint256 public constant override BALLKIDZ_PROJECT_ID = 369;
 
   /**
     @notice
@@ -94,21 +94,22 @@ contract DefifaDeployer is IDefifaDeployer, IERC721Receiver {
   //*********************************************************************//
 
   /**
-   * @notice
+    @notice 
+    The original code for the Defifa delegate to base subsequent instances on.
    */
-  address public immutable defifaCodeOrigin;
+  address public immutable delegateCodeOrigin;
 
   /**
-    @notice
-    The token this game is played with.
-  */
-  address public immutable override token;
+    @notice 
+    The original code for the Defifa governor to base subsequent instances on.
+   */
+  address public immutable governorCodeOrigin;
 
   /**
     @notice
     The controller with which new projects should be deployed.
   */
-  IJBController public immutable override controller;
+  IJBController3_1 public immutable override controller;
 
   /**
     @notice
@@ -194,19 +195,20 @@ contract DefifaDeployer is IDefifaDeployer, IERC721Receiver {
   //*********************************************************************//
 
   /**
+    @param _delegateCodeOrigin The code of the Defifa delegate.
+    @param _governorCodeOrigin The code of the Defifa governor.
     @param _controller The controller with which new projects should be deployed. 
-    @param _token The token that games deployed through this contract accept.
     @param _protocolFeeProjectTokenAccount The address that should be forwarded JBX accumulated in this contract from game fund distributions. 
   */
   constructor(
-    address _defifaCodeOrigin,
-    IJBController _controller,
-    address _token,
+    address _delegateCodeOrigin,
+    address _governorCodeOrigin,
+    IJBController3_1 _controller,
     address _protocolFeeProjectTokenAccount
   ) {
-    defifaCodeOrigin = _defifaCodeOrigin;
+    delegateCodeOrigin = _delegateCodeOrigin;
+    governorCodeOrigin = _governorCodeOrigin;
     controller = _controller;
-    token = _token;
     protocolFeeProjectTokenAccount = _protocolFeeProjectTokenAccount;
   }
 
@@ -240,9 +242,6 @@ contract DefifaDeployer is IDefifaDeployer, IERC721Receiver {
     // Get the game ID, optimistically knowing it will be one greater than the current count.
     gameId = controller.projects().count() + 1;
 
-    // Make sure the provided terminal accepts the same currency as this game is being played in.
-    if (!_launchProjectData.terminal.acceptsToken(token, gameId)) revert UNEXPECTED_TERMINAL_CURRENCY();
-
     {
       // Store the timestamps that'll define the game phases.
       _timesFor[gameId] = DefifaTimeData({
@@ -256,27 +255,38 @@ contract DefifaDeployer is IDefifaDeployer, IERC721Receiver {
       _opsFor[gameId] = DefifaStoredOpsData({
         terminal:_launchProjectData.terminal,
         distributionLimit: _launchProjectData.distributionLimit,
+        token: _launchProjectData.token,
         holdFees: _launchProjectData.holdFees
       });
 
       if (_launchProjectData.splits.length != 0) {
         // Store the splits. They'll be used when queueing phase 2.
         JBGroupedSplits[] memory _groupedSplits = new JBGroupedSplits[](1);
+        // Add a split for the Ballkidz fee.
+        _launchProjectData.splits[_launchProjectData.splits.length] = JBSplit({
+          preferClaimed: false,
+          preferAddToBalance: false,
+          percent: JBConstants.SPLITS_TOTAL_PERCENT / 20,
+          projectId: BALLKIDZ_PROJECT_ID,
+          beneficiary: _launchProjectData.ballkidzFeeProjectTokenAccount,
+          lockedUntil: 0,
+          allocator: IJBSplitAllocator(address(0))
+        });
         _groupedSplits[0] = JBGroupedSplits({group: gameId, splits: _launchProjectData.splits});
         // This contract must have SET_SPLITS operator permissions.
-        controller.splitsStore().set(SPLIT_PROJECT_ID, SPLIT_DOMAIN, _groupedSplits);
+        controller.splitsStore().set(BALLKIDZ_PROJECT_ID, SPLIT_DOMAIN, _groupedSplits);
       }
     }
 
     JB721PricingParams memory _pricingParams = JB721PricingParams({
         tiers: _delegateData.tiers,
-        currency: _launchProjectData.terminal.currencyForToken(token),
-        decimals: _launchProjectData.terminal.decimalsForToken(token),
+        currency: _launchProjectData.terminal.currencyForToken(_launchProjectData.token),
+        decimals: _launchProjectData.terminal.decimalsForToken(_launchProjectData.token),
         prices: IJBPrices(address(0))
       });
 
     // Clone and initialize the new delegate
-    DefifaDelegate _delegate = DefifaDelegate(Clones.clone(defifaCodeOrigin));
+    DefifaDelegate _delegate = DefifaDelegate(Clones.clone(delegateCodeOrigin));
     _delegate.initialize(
       gameId,
       controller.directory(),
@@ -293,14 +303,19 @@ contract DefifaDeployer is IDefifaDeployer, IERC721Receiver {
           lockReservedTokenChanges: false,
           lockVotingUnitChanges: false,
           lockManualMintingChanges: false
-      }),
-      _delegateData.tierNames
+      })//,
+      //_delegateData.tierNames
     );
+
+    // Make sure the provided terminal accepts the same currency as this game is being played in.
+    if (!_launchProjectData.terminal.acceptsToken(_launchProjectData.token, gameId)) revert UNEXPECTED_TERMINAL_CURRENCY();
 
     // Queue the first phase of the game.
     _queuePhase1(_launchProjectData, address(_delegate));
 
-     governor = new DefifaGovernor(_delegate, _launchProjectData.end);
+    // Clone and initialize the new governor.
+     governor = IDefifaGovernor(Clones.clone(governorCodeOrigin));
+     governor.initialize(_delegate, _launchProjectData.end);
 
     // Transfer ownership to the specified owner.
     _delegate.transferOwnership(address(governor));
@@ -528,15 +543,15 @@ contract DefifaDeployer is IDefifaDeployer, IERC721Receiver {
     JBFundAccessConstraints[] memory fundAccessConstraints = new JBFundAccessConstraints[](1);
     fundAccessConstraints[0] = JBFundAccessConstraints({
       terminal: _ops.terminal,
-      token: token,
+      token: _ops.token,
       distributionLimit: _ops.distributionLimit,
-      distributionLimitCurrency: _ops.terminal.currencyForToken(token),
+      distributionLimitCurrency: _ops.terminal.currencyForToken(_ops.token),
       overflowAllowance: 0,
       overflowAllowanceCurrency: 0
     });
 
     // Fetch splits.
-    JBSplit[] memory _splits =  controller.splitsStore().splitsOf(SPLIT_PROJECT_ID, SPLIT_DOMAIN, _gameId);
+    JBSplit[] memory _splits =  controller.splitsStore().splitsOf(BALLKIDZ_PROJECT_ID, SPLIT_DOMAIN, _gameId);
 
     // Make a group split for ETH payouts.
     JBGroupedSplits[] memory _groupedSplits;

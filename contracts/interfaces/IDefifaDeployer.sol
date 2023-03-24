@@ -2,20 +2,18 @@
 pragma solidity ^0.8.0;
 
 import '@jbx-protocol/juice-721-delegate/contracts/interfaces/IJBTiered721DelegateDeployer.sol';
-import '@jbx-protocol/juice-contracts-v3/contracts/interfaces/IJBController.sol';
+import '@jbx-protocol/juice-contracts-v3/contracts/interfaces/IJBController3_1.sol';
 import '../structs/DefifaLaunchProjectData.sol';
 import '../structs/DefifaDelegateData.sol';
 import '../structs/DefifaTimeData.sol';
 import './IDefifaGovernor.sol';
 
 interface IDefifaDeployer {
-  function SPLIT_PROJECT_ID() external view returns (uint256);
+  function BALLKIDZ_PROJECT_ID() external view returns (uint256);
 
   function SPLIT_DOMAIN() external view returns (uint256);
 
-  function token() external view returns (address);
-
-  function controller() external view returns (IJBController);
+  function controller() external view returns (IJBController3_1);
 
   function protocolFeeProjectTokenAccount() external view returns (address);
 

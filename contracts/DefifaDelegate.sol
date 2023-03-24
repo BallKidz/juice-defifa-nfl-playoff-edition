@@ -84,13 +84,13 @@ contract DefifaDelegate is IDefifaDelegate, JB721TieredGovernance {
   */
   mapping(uint256 => uint256) private _redeemedFromTier;
 
-  /**
-    @notice
-    The names of each tier.
+  // /**
+  //   @notice
+  //   The names of each tier.
 
-    @dev _tierId The ID of the tier to get a name for.
-  */
-  mapping(uint256 => string) private _tierNameOf;
+  //   @dev _tierId The ID of the tier to get a name for.
+  // */
+  // mapping(uint256 => string) private _tierNameOf;
 
   //*********************************************************************//
   // ------------------------- external views -------------------------- //
@@ -116,7 +116,9 @@ contract DefifaDelegate is IDefifaDelegate, JB721TieredGovernance {
     @return memo The memo that should be forwarded to the event.
     @return delegateAllocations The amount to send to delegates instead of adding to the beneficiary.
   */
-  function redeemParams(JBRedeemParamsData calldata _data)
+  function redeemParams(
+    JBRedeemParamsData calldata _data
+  )
     public
     view
     override
@@ -184,13 +186,10 @@ contract DefifaDelegate is IDefifaDelegate, JB721TieredGovernance {
 
     @return cumulativeWeight The weight.
   */
-  function redemptionWeightOf(uint256[] memory _tokenIds, JBRedeemParamsData calldata)
-    public
-    view
-    virtual
-    override
-    returns (uint256 cumulativeWeight)
-  {
+  function redemptionWeightOf(
+    uint256[] memory _tokenIds,
+    JBRedeemParamsData calldata
+  ) public view virtual override returns (uint256 cumulativeWeight) {
     // If the game is over, set the weight based on the scorecard results.
     // Keep a reference to the number of tokens being redeemed.
     uint256 _tokenCount = _tokenIds.length;
@@ -223,156 +222,152 @@ contract DefifaDelegate is IDefifaDelegate, JB721TieredGovernance {
 
     @return The total weight.
   */
-  function totalRedemptionWeight(JBRedeemParamsData calldata)
-    public
-    view
-    virtual
-    override
-    returns (uint256)
-  {
+  function totalRedemptionWeight(
+    JBRedeemParamsData calldata
+  ) public view virtual override returns (uint256) {
     // Set the total weight as the total scorecard weight.
     return TOTAL_REDEMPTION_WEIGHT;
   }
 
-  /**
-    @notice
-    The metadata URI of the provided token ID.
+  // /**
+  //   @notice
+  //   The metadata URI of the provided token ID.
 
-    @dev
-    Defer to the tokenUriResolver if set, otherwise, use the tokenUri set with the token's tier.
+  //   @dev
+  //   Defer to the tokenUriResolver if set, otherwise, use the tokenUri set with the token's tier.
 
-    @param _tokenId The ID of the token to get the tier URI for.
+  //   @param _tokenId The ID of the token to get the tier URI for.
 
-    @return The token URI corresponding with the tier or the tokenUriResolver URI.
-  */
-  function tokenURI(uint256 _tokenId) public view override returns (string memory) {
-    // Get a reference to the tier.
-    JB721Tier memory _tier = store.tierOfTokenId(address(this), _tokenId);
+  //   @return The token URI corresponding with the tier or the tokenUriResolver URI.
+  // */
+  // function tokenURI(uint256 _tokenId) public view override returns (string memory) {
+  //   // Get a reference to the tier.
+  //   JB721Tier memory _tier = store.tierOfTokenId(address(this), _tokenId);
 
-    _tokenId; // do something with me
-    string[] memory parts = new string[](4);
-    parts[0] = string('data:application/json;base64,');
-    string memory _title = name();
-    parts[1] = string(
-      abi.encodePacked(
-        '{"name":"',
-        _title,
-        '","description":"Team with ID",',
-        '"image":"data:image/svg+xml;base64,'
-      )
-    );
-    string memory _titleFontSize;
-    if (bytes(_title).length < 35) _titleFontSize = '24';
-    else _titleFontSize = '20';
+  //   _tokenId; // do something with me
+  //   string[] memory parts = new string[](4);
+  //   parts[0] = string('data:application/json;base64,');
+  //   string memory _title = name();
+  //   parts[1] = string(
+  //     abi.encodePacked(
+  //       '{"name":"',
+  //       _title,
+  //       '","description":"Team with ID",',
+  //       '"image":"data:image/svg+xml;base64,'
+  //     )
+  //   );
+  //   string memory _titleFontSize;
+  //   if (bytes(_title).length < 35) _titleFontSize = '24';
+  //   else _titleFontSize = '20';
 
-    string memory _word = _tierNameOf[_tier.id];
-    string memory _fontSize;
-    if (bytes(_word).length < 3) _fontSize = '240';
-    else if (bytes(_word).length < 5) _fontSize = '200';
-    else if (bytes(_word).length < 8) _fontSize = '140';
-    else if (bytes(_word).length < 10) _fontSize = '90';
-    else if (bytes(_word).length < 12) _fontSize = '80';
-    else if (bytes(_word).length < 16) _fontSize = '60';
-    else if (bytes(_word).length < 23) _fontSize = '40';
-    else if (bytes(_word).length < 30) _fontSize = '30';
-    else if (bytes(_word).length < 35) _fontSize = '20';
-    else _fontSize = '16';
+  //   string memory _word = _tierNameOf[_tier.id];
+  //   string memory _fontSize;
+  //   if (bytes(_word).length < 3) _fontSize = '240';
+  //   else if (bytes(_word).length < 5) _fontSize = '200';
+  //   else if (bytes(_word).length < 8) _fontSize = '140';
+  //   else if (bytes(_word).length < 10) _fontSize = '90';
+  //   else if (bytes(_word).length < 12) _fontSize = '80';
+  //   else if (bytes(_word).length < 16) _fontSize = '60';
+  //   else if (bytes(_word).length < 23) _fontSize = '40';
+  //   else if (bytes(_word).length < 30) _fontSize = '30';
+  //   else if (bytes(_word).length < 35) _fontSize = '20';
+  //   else _fontSize = '16';
 
-    parts[2] = Base64.encode(
-      abi.encodePacked(
-        '<svg width="500" height="500" viewBox="0 0 100% 100%" xmlns="http://www.w3.org/2000/svg">',
-        '<style>@font-face{font-family:"Capsules-300";src:url(data:font/truetype;charset=utf-8;base64,',
-        DefifaFontImporter.getSkinnyFontSource(),
-        ');format("opentype");}',
-        '@font-face{font-family:"Capsules-700";src:url(data:font/truetype;charset=utf-8;base64,',
-        DefifaFontImporter.getBeefyFontSource(),
-        ');format("opentype");}',
-        'text{fill:#c0b3f1;white-space:pre-wrap; width:100%; }</style>',
-        '<rect width="100vw" height="100vh" fill="#181424"/>',
-        '<text x="10" y="20" style="font-size:16px; font-family: Capsules-300; font-weight:300; fill: #be69a7;">DEFIFA</text>',
-        '<text x="10" y="40" style="font-size:',
-        _titleFontSize,
-        'px; font-family: Capsules-300; font-weight:300;">',
-        _title,
-        '</text>',
-        '<text x="10" y="60" style="font-size:16px; font-family: Capsules-300; font-weight:300; fill: #393059;">GAME ID: 123</text>',
-        '<text x="10" y="440" style="font-size:16px; font-family: Capsules-300; font-weight:300; fill: #393059;">TOKEN ID: 1000003</text>',
-        '<text x="10" y="460" style="font-size:16px; font-family: Capsules-300; font-weight:300; fill: #393059;">VALUE: 3 ETH</text>',
-        '<text x="10" y="480" style="font-size:16px; font-family: Capsules-300; font-weight:300; fill: #393059;">RARITY: 1/10</text>',
-        '<text textLength="500" lengthAdjust="spacing" x="50%" y="50%" style="font-size:',
-        _fontSize,
-        'px; font-family: Capsules-700; font-weight:700; text-anchor:middle; dominant-baseline:middle; ">',
-        _word,
-        '</text>',
-        '</svg>'
-      )
-    );
-    parts[3] = string('"}');
-    string memory uri = string.concat(
-      parts[0],
-      Base64.encode(abi.encodePacked(parts[1], parts[2], parts[3]))
-    );
-    return uri;
-  }
+  //   parts[2] = Base64.encode(
+  //     abi.encodePacked(
+  //       '<svg width="500" height="500" viewBox="0 0 100% 100%" xmlns="http://www.w3.org/2000/svg">',
+  //       '<style>@font-face{font-family:"Capsules-300";src:url(data:font/truetype;charset=utf-8;base64,',
+  //       DefifaFontImporter.getSkinnyFontSource(),
+  //       ');format("opentype");}',
+  //       '@font-face{font-family:"Capsules-700";src:url(data:font/truetype;charset=utf-8;base64,',
+  //       DefifaFontImporter.getBeefyFontSource(),
+  //       ');format("opentype");}',
+  //       'text{fill:#c0b3f1;white-space:pre-wrap; width:100%; }</style>',
+  //       '<rect width="100vw" height="100vh" fill="#181424"/>',
+  //       '<text x="10" y="20" style="font-size:16px; font-family: Capsules-300; font-weight:300; fill: #be69a7;">DEFIFA</text>',
+  //       '<text x="10" y="40" style="font-size:',
+  //       _titleFontSize,
+  //       'px; font-family: Capsules-300; font-weight:300;">',
+  //       _title,
+  //       '</text>',
+  //       '<text x="10" y="60" style="font-size:16px; font-family: Capsules-300; font-weight:300; fill: #393059;">GAME ID: 123</text>',
+  //       '<text x="10" y="440" style="font-size:16px; font-family: Capsules-300; font-weight:300; fill: #393059;">TOKEN ID: 1000003</text>',
+  //       '<text x="10" y="460" style="font-size:16px; font-family: Capsules-300; font-weight:300; fill: #393059;">VALUE: 3 ETH</text>',
+  //       '<text x="10" y="480" style="font-size:16px; font-family: Capsules-300; font-weight:300; fill: #393059;">RARITY: 1/10</text>',
+  //       '<text textLength="500" lengthAdjust="spacing" x="50%" y="50%" style="font-size:',
+  //       _fontSize,
+  //       'px; font-family: Capsules-700; font-weight:700; text-anchor:middle; dominant-baseline:middle; ">',
+  //       _word,
+  //       '</text>',
+  //       '</svg>'
+  //     )
+  //   );
+  //   parts[3] = string('"}');
+  //   string memory uri = string.concat(
+  //     parts[0],
+  //     Base64.encode(abi.encodePacked(parts[1], parts[2], parts[3]))
+  //   );
+  //   return uri;
+  // }
 
   //*********************************************************************//
   // ---------------------- external transactions ---------------------- //
   //*********************************************************************//
 
-  /**
-    @param _projectId The ID of the project this contract's functionality applies to.
-    @param _directory The directory of terminals and controllers for projects.
-    @param _name The name of the token.
-    @param _symbol The symbol that the token should be represented by.
-    @param _fundingCycleStore A contract storing all funding cycle configurations.
-    @param _baseUri A URI to use as a base for full token URIs.
-    @param _tokenUriResolver A contract responsible for resolving the token URI for each token ID.
-    @param _contractUri A URI where contract metadata can be found. 
-    @param _pricing The tier pricing according to which token distribution will be made. Must be passed in order of contribution floor, with implied increasing value.
-    @param _store A contract that stores the NFT's data.
-    @param _flags A set of flags that help define how this contract works.
-  */
-  function initialize(
-    uint256 _projectId,
-    IJBDirectory _directory,
-    string memory _name,
-    string memory _symbol,
-    IJBFundingCycleStore _fundingCycleStore,
-    string memory _baseUri,
-    IJBTokenUriResolver _tokenUriResolver,
-    string memory _contractUri,
-    JB721PricingParams memory _pricing,
-    IJBTiered721DelegateStore _store,
-    JBTiered721Flags memory _flags,
-    string[] memory _tierNames
-  ) public override {
-    super.initialize(
-      _projectId,
-      _directory,
-      _name,
-      _symbol,
-      _fundingCycleStore,
-      _baseUri,
-      _tokenUriResolver,
-      _contractUri,
-      _pricing,
-      _store,
-      _flags
-    );
+  // /**
+  //   @param _projectId The ID of the project this contract's functionality applies to.
+  //   @param _directory The directory of terminals and controllers for projects.
+  //   @param _name The name of the token.
+  //   @param _symbol The symbol that the token should be represented by.
+  //   @param _fundingCycleStore A contract storing all funding cycle configurations.
+  //   @param _baseUri A URI to use as a base for full token URIs.
+  //   @param _tokenUriResolver A contract responsible for resolving the token URI for each token ID.
+  //   @param _contractUri A URI where contract metadata can be found.
+  //   @param _pricing The tier pricing according to which token distribution will be made. Must be passed in order of contribution floor, with implied increasing value.
+  //   @param _store A contract that stores the NFT's data.
+  //   @param _flags A set of flags that help define how this contract works.
+  // */
+  // function initialize(
+  //   uint256 _projectId,
+  //   IJBDirectory _directory,
+  //   string memory _name,
+  //   string memory _symbol,
+  //   IJBFundingCycleStore _fundingCycleStore,
+  //   string memory _baseUri,
+  //   IJBTokenUriResolver _tokenUriResolver,
+  //   string memory _contractUri,
+  //   JB721PricingParams memory _pricing,
+  //   IJBTiered721DelegateStore _store,
+  //   JBTiered721Flags memory _flags,
+  //   // string[] memory _tierNames
+  // ) public override {
+  //   super.initialize(
+  //     _projectId,
+  //     _directory,
+  //     _name,
+  //     _symbol,
+  //     _fundingCycleStore,
+  //     _baseUri,
+  //     _tokenUriResolver,
+  //     _contractUri,
+  //     _pricing,
+  //     _store,
+  //     _flags
+  //   );
 
-    // Keep a reference to the number of tier names.
-    uint256 _numberOfTierNames = _tierNames.length;
+  //   // // Keep a reference to the number of tier names.
+  //   // uint256 _numberOfTierNames = _tierNames.length;
 
-    // Set the name for each tier.
-    for (uint256 _i; _i < _numberOfTierNames; ) {
-      // Set the tier name.
-      _tierNameOf[_i + 1] = _tierNames[_i];
+  //   // // Set the name for each tier.
+  //   // for (uint256 _i; _i < _numberOfTierNames; ) {
+  //   //   // Set the tier name.
+  //   //   _tierNameOf[_i + 1] = _tierNames[_i];
 
-      unchecked {
-        ++_i;
-      }
-    }
-  }
+  //   //   unchecked {
+  //   //     ++_i;
+  //   //   }
+  //   // }
+  // }
 
   /** 
     @notice
@@ -383,11 +378,9 @@ contract DefifaDelegate is IDefifaDelegate, JB721TieredGovernance {
 
     @param _tierWeights The tier weights to set.
   */
-  function setTierRedemptionWeights(DefifaTierRedemptionWeight[] memory _tierWeights)
-    external
-    override
-    onlyOwner
-  {
+  function setTierRedemptionWeights(
+    DefifaTierRedemptionWeight[] memory _tierWeights
+  ) external override onlyOwner {
     // Make sure the game has ended.
     if (fundingCycleStore.currentOf(projectId).number < _END_GAME_PHASE)
       revert GAME_ISNT_OVER_YET();

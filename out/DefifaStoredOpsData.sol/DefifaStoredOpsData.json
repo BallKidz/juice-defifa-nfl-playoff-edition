@@ -10,25 +10,25 @@
   },
   "ast": {
     "absolutePath": "contracts/structs/DefifaStoredOpsData.sol",
-    "id": 3766,
+    "id": 2934,
     "exportedSymbols": {
       "DefifaStoredOpsData": [
-        3765
+        2933
       ],
       "IERC165": [
-        59978
+        59168
       ],
       "IJBPaymentTerminal": [
-        50491
+        49681
       ]
     },
     "nodeType": "SourceUnit",
-    "src": "32:480:14",
+    "src": "32:548:12",
     "nodes": [
       {
-        "id": 3756,
+        "id": 2922,
         "nodeType": "PragmaDirective",
-        "src": "32:23:14",
+        "src": "32:23:12",
         "nodes": [],
         "literals": [
           "solidity",
@@ -38,57 +38,57 @@
         ]
       },
       {
-        "id": 3757,
+        "id": 2923,
         "nodeType": "ImportDirective",
-        "src": "57:86:14",
+        "src": "57:86:12",
         "nodes": [],
         "absolutePath": "node_modules/@jbx-protocol/juice-contracts-v3/contracts/interfaces/IJBPaymentTerminal.sol",
         "file": "@jbx-protocol/juice-contracts-v3/contracts/interfaces/IJBPaymentTerminal.sol",
         "nameLocation": "-1:-1:-1",
-        "scope": 3766,
-        "sourceUnit": 50492,
+        "scope": 2934,
+        "sourceUnit": 49682,
         "symbolAliases": [],
         "unitAlias": ""
       },
       {
-        "id": 3765,
+        "id": 2933,
         "nodeType": "StructDefinition",
-        "src": "405:106:14",
+        "src": "456:123:12",
         "nodes": [],
         "canonicalName": "DefifaStoredOpsData",
         "members": [
           {
             "constant": false,
-            "id": 3760,
+            "id": 2926,
             "mutability": "mutable",
             "name": "terminal",
-            "nameLocation": "455:8:14",
+            "nameLocation": "506:8:12",
             "nodeType": "VariableDeclaration",
-            "scope": 3765,
-            "src": "436:27:14",
+            "scope": 2933,
+            "src": "487:27:12",
             "stateVariable": false,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_contract$_IJBPaymentTerminal_$50491",
+              "typeIdentifier": "t_contract$_IJBPaymentTerminal_$49681",
               "typeString": "contract IJBPaymentTerminal"
             },
             "typeName": {
-              "id": 3759,
+              "id": 2925,
               "nodeType": "UserDefinedTypeName",
               "pathNode": {
-                "id": 3758,
+                "id": 2924,
                 "name": "IJBPaymentTerminal",
                 "nameLocations": [
-                  "436:18:14"
+                  "487:18:12"
                 ],
                 "nodeType": "IdentifierPath",
-                "referencedDeclaration": 50491,
-                "src": "436:18:14"
+                "referencedDeclaration": 49681,
+                "src": "487:18:12"
               },
-              "referencedDeclaration": 50491,
-              "src": "436:18:14",
+              "referencedDeclaration": 49681,
+              "src": "487:18:12",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_IJBPaymentTerminal_$50491",
+                "typeIdentifier": "t_contract$_IJBPaymentTerminal_$49681",
                 "typeString": "contract IJBPaymentTerminal"
               }
             },
@@ -96,13 +96,41 @@
           },
           {
             "constant": false,
-            "id": 3762,
+            "id": 2928,
+            "mutability": "mutable",
+            "name": "token",
+            "nameLocation": "526:5:12",
+            "nodeType": "VariableDeclaration",
+            "scope": 2933,
+            "src": "518:13:12",
+            "stateVariable": false,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 2927,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "518:7:12",
+              "stateMutability": "nonpayable",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 2930,
             "mutability": "mutable",
             "name": "distributionLimit",
-            "nameLocation": "474:17:14",
+            "nameLocation": "542:17:12",
             "nodeType": "VariableDeclaration",
-            "scope": 3765,
-            "src": "467:24:14",
+            "scope": 2933,
+            "src": "535:24:12",
             "stateVariable": false,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -110,10 +138,10 @@
               "typeString": "uint88"
             },
             "typeName": {
-              "id": 3761,
+              "id": 2929,
               "name": "uint88",
               "nodeType": "ElementaryTypeName",
-              "src": "467:6:14",
+              "src": "535:6:12",
               "typeDescriptions": {
                 "typeIdentifier": "t_uint88",
                 "typeString": "uint88"
@@ -123,13 +151,13 @@
           },
           {
             "constant": false,
-            "id": 3764,
+            "id": 2932,
             "mutability": "mutable",
             "name": "holdFees",
-            "nameLocation": "500:8:14",
+            "nameLocation": "568:8:12",
             "nodeType": "VariableDeclaration",
-            "scope": 3765,
-            "src": "495:13:14",
+            "scope": 2933,
+            "src": "563:13:12",
             "stateVariable": false,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -137,10 +165,10 @@
               "typeString": "bool"
             },
             "typeName": {
-              "id": 3763,
+              "id": 2931,
               "name": "bool",
               "nodeType": "ElementaryTypeName",
-              "src": "495:4:14",
+              "src": "563:4:12",
               "typeDescriptions": {
                 "typeIdentifier": "t_bool",
                 "typeString": "bool"
@@ -150,12 +178,12 @@
           }
         ],
         "name": "DefifaStoredOpsData",
-        "nameLocation": "412:19:14",
-        "scope": 3766,
+        "nameLocation": "463:19:12",
+        "scope": 2934,
         "visibility": "public"
       }
     ],
     "license": "MIT"
   },
-  "id": 14
+  "id": 12
 }

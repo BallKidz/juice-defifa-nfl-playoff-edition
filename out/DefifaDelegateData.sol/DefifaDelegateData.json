@@ -10,32 +10,32 @@
   },
   "ast": {
     "absolutePath": "contracts/structs/DefifaDelegateData.sol",
-    "id": 3602,
+    "id": 2888,
     "exportedSymbols": {
       "DefifaDelegateData": [
-        3601
+        2887
       ],
       "IJBTiered721DelegateStore": [
-        37634
+        36948
       ],
       "IJBTokenUriResolver": [
-        51472
+        50786
       ],
       "JB721Tier": [
-        38243
+        37557
       ],
       "JB721TierParams": [
-        38274
+        37588
       ],
       "JBTiered721Flags": [
-        38426
+        37740
       ]
     },
     "nodeType": "SourceUnit",
-    "src": "32:835:10",
+    "src": "32:751:10",
     "nodes": [
       {
-        "id": 3578,
+        "id": 2866,
         "nodeType": "PragmaDirective",
         "src": "32:23:10",
         "nodes": [],
@@ -47,47 +47,47 @@
         ]
       },
       {
-        "id": 3579,
+        "id": 2867,
         "nodeType": "ImportDirective",
         "src": "57:80:10",
         "nodes": [],
         "absolutePath": "node_modules/@jbx-protocol/juice-721-delegate/contracts/structs/JB721TierParams.sol",
         "file": "@jbx-protocol/juice-721-delegate/contracts/structs/JB721TierParams.sol",
         "nameLocation": "-1:-1:-1",
-        "scope": 3602,
-        "sourceUnit": 38275,
+        "scope": 2888,
+        "sourceUnit": 37589,
         "symbolAliases": [],
         "unitAlias": ""
       },
       {
-        "id": 3580,
+        "id": 2868,
         "nodeType": "ImportDirective",
         "src": "138:93:10",
         "nodes": [],
         "absolutePath": "node_modules/@jbx-protocol/juice-721-delegate/contracts/interfaces/IJBTiered721DelegateStore.sol",
         "file": "@jbx-protocol/juice-721-delegate/contracts/interfaces/IJBTiered721DelegateStore.sol",
         "nameLocation": "-1:-1:-1",
-        "scope": 3602,
-        "sourceUnit": 37635,
+        "scope": 2888,
+        "sourceUnit": 36949,
         "symbolAliases": [],
         "unitAlias": ""
       },
       {
-        "id": 3601,
+        "id": 2887,
         "nodeType": "StructDefinition",
-        "src": "664:202:10",
+        "src": "597:185:10",
         "nodes": [],
         "canonicalName": "DefifaDelegateData",
         "members": [
           {
             "constant": false,
-            "id": 3582,
+            "id": 2870,
             "mutability": "mutable",
             "name": "name",
-            "nameLocation": "701:4:10",
+            "nameLocation": "634:4:10",
             "nodeType": "VariableDeclaration",
-            "scope": 3601,
-            "src": "694:11:10",
+            "scope": 2887,
+            "src": "627:11:10",
             "stateVariable": false,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -95,10 +95,10 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 3581,
+              "id": 2869,
               "name": "string",
               "nodeType": "ElementaryTypeName",
-              "src": "694:6:10",
+              "src": "627:6:10",
               "typeDescriptions": {
                 "typeIdentifier": "t_string_storage_ptr",
                 "typeString": "string"
@@ -108,13 +108,13 @@
           },
           {
             "constant": false,
-            "id": 3584,
+            "id": 2872,
             "mutability": "mutable",
             "name": "symbol",
-            "nameLocation": "716:6:10",
+            "nameLocation": "649:6:10",
             "nodeType": "VariableDeclaration",
-            "scope": 3601,
-            "src": "709:13:10",
+            "scope": 2887,
+            "src": "642:13:10",
             "stateVariable": false,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -122,10 +122,10 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 3583,
+              "id": 2871,
               "name": "string",
               "nodeType": "ElementaryTypeName",
-              "src": "709:6:10",
+              "src": "642:6:10",
               "typeDescriptions": {
                 "typeIdentifier": "t_string_storage_ptr",
                 "typeString": "string"
@@ -135,13 +135,13 @@
           },
           {
             "constant": false,
-            "id": 3586,
+            "id": 2874,
             "mutability": "mutable",
             "name": "baseUri",
-            "nameLocation": "733:7:10",
+            "nameLocation": "666:7:10",
             "nodeType": "VariableDeclaration",
-            "scope": 3601,
-            "src": "726:14:10",
+            "scope": 2887,
+            "src": "659:14:10",
             "stateVariable": false,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -149,10 +149,10 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 3585,
+              "id": 2873,
               "name": "string",
               "nodeType": "ElementaryTypeName",
-              "src": "726:6:10",
+              "src": "659:6:10",
               "typeDescriptions": {
                 "typeIdentifier": "t_string_storage_ptr",
                 "typeString": "string"
@@ -162,13 +162,13 @@
           },
           {
             "constant": false,
-            "id": 3588,
+            "id": 2876,
             "mutability": "mutable",
             "name": "contractUri",
-            "nameLocation": "751:11:10",
+            "nameLocation": "684:11:10",
             "nodeType": "VariableDeclaration",
-            "scope": 3601,
-            "src": "744:18:10",
+            "scope": 2887,
+            "src": "677:18:10",
             "stateVariable": false,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -176,10 +176,10 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 3587,
+              "id": 2875,
               "name": "string",
               "nodeType": "ElementaryTypeName",
-              "src": "744:6:10",
+              "src": "677:6:10",
               "typeDescriptions": {
                 "typeIdentifier": "t_string_storage_ptr",
                 "typeString": "string"
@@ -189,45 +189,45 @@
           },
           {
             "constant": false,
-            "id": 3592,
+            "id": 2880,
             "mutability": "mutable",
             "name": "tiers",
-            "nameLocation": "784:5:10",
+            "nameLocation": "717:5:10",
             "nodeType": "VariableDeclaration",
-            "scope": 3601,
-            "src": "766:23:10",
+            "scope": 2887,
+            "src": "699:23:10",
             "stateVariable": false,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_array$_t_struct$_JB721TierParams_$38274_storage_$dyn_storage_ptr",
+              "typeIdentifier": "t_array$_t_struct$_JB721TierParams_$37588_storage_$dyn_storage_ptr",
               "typeString": "struct JB721TierParams[]"
             },
             "typeName": {
               "baseType": {
-                "id": 3590,
+                "id": 2878,
                 "nodeType": "UserDefinedTypeName",
                 "pathNode": {
-                  "id": 3589,
+                  "id": 2877,
                   "name": "JB721TierParams",
                   "nameLocations": [
-                    "766:15:10"
+                    "699:15:10"
                   ],
                   "nodeType": "IdentifierPath",
-                  "referencedDeclaration": 38274,
-                  "src": "766:15:10"
+                  "referencedDeclaration": 37588,
+                  "src": "699:15:10"
                 },
-                "referencedDeclaration": 38274,
-                "src": "766:15:10",
+                "referencedDeclaration": 37588,
+                "src": "699:15:10",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_struct$_JB721TierParams_$38274_storage_ptr",
+                  "typeIdentifier": "t_struct$_JB721TierParams_$37588_storage_ptr",
                   "typeString": "struct JB721TierParams"
                 }
               },
-              "id": 3591,
+              "id": 2879,
               "nodeType": "ArrayTypeName",
-              "src": "766:17:10",
+              "src": "699:17:10",
               "typeDescriptions": {
-                "typeIdentifier": "t_array$_t_struct$_JB721TierParams_$38274_storage_$dyn_storage_ptr",
+                "typeIdentifier": "t_array$_t_struct$_JB721TierParams_$37588_storage_$dyn_storage_ptr",
                 "typeString": "struct JB721TierParams[]"
               }
             },
@@ -235,13 +235,13 @@
           },
           {
             "constant": false,
-            "id": 3595,
+            "id": 2883,
             "mutability": "mutable",
             "name": "tierNames",
-            "nameLocation": "802:9:10",
+            "nameLocation": "735:9:10",
             "nodeType": "VariableDeclaration",
-            "scope": 3601,
-            "src": "793:18:10",
+            "scope": 2887,
+            "src": "726:18:10",
             "stateVariable": false,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -250,18 +250,18 @@
             },
             "typeName": {
               "baseType": {
-                "id": 3593,
+                "id": 2881,
                 "name": "string",
                 "nodeType": "ElementaryTypeName",
-                "src": "793:6:10",
+                "src": "726:6:10",
                 "typeDescriptions": {
                   "typeIdentifier": "t_string_storage_ptr",
                   "typeString": "string"
                 }
               },
-              "id": 3594,
+              "id": 2882,
               "nodeType": "ArrayTypeName",
-              "src": "793:8:10",
+              "src": "726:8:10",
               "typeDescriptions": {
                 "typeIdentifier": "t_array$_t_string_storage_$dyn_storage_ptr",
                 "typeString": "string[]"
@@ -271,73 +271,45 @@
           },
           {
             "constant": false,
-            "id": 3598,
+            "id": 2886,
             "mutability": "mutable",
             "name": "store",
-            "nameLocation": "841:5:10",
+            "nameLocation": "774:5:10",
             "nodeType": "VariableDeclaration",
-            "scope": 3601,
-            "src": "815:31:10",
+            "scope": 2887,
+            "src": "748:31:10",
             "stateVariable": false,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_contract$_IJBTiered721DelegateStore_$37634",
+              "typeIdentifier": "t_contract$_IJBTiered721DelegateStore_$36948",
               "typeString": "contract IJBTiered721DelegateStore"
             },
             "typeName": {
-              "id": 3597,
+              "id": 2885,
               "nodeType": "UserDefinedTypeName",
               "pathNode": {
-                "id": 3596,
+                "id": 2884,
                 "name": "IJBTiered721DelegateStore",
                 "nameLocations": [
-                  "815:25:10"
+                  "748:25:10"
                 ],
                 "nodeType": "IdentifierPath",
-                "referencedDeclaration": 37634,
-                "src": "815:25:10"
+                "referencedDeclaration": 36948,
+                "src": "748:25:10"
               },
-              "referencedDeclaration": 37634,
-              "src": "815:25:10",
+              "referencedDeclaration": 36948,
+              "src": "748:25:10",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_IJBTiered721DelegateStore_$37634",
+                "typeIdentifier": "t_contract$_IJBTiered721DelegateStore_$36948",
                 "typeString": "contract IJBTiered721DelegateStore"
-              }
-            },
-            "visibility": "internal"
-          },
-          {
-            "constant": false,
-            "id": 3600,
-            "mutability": "mutable",
-            "name": "owner",
-            "nameLocation": "858:5:10",
-            "nodeType": "VariableDeclaration",
-            "scope": 3601,
-            "src": "850:13:10",
-            "stateVariable": false,
-            "storageLocation": "default",
-            "typeDescriptions": {
-              "typeIdentifier": "t_address",
-              "typeString": "address"
-            },
-            "typeName": {
-              "id": 3599,
-              "name": "address",
-              "nodeType": "ElementaryTypeName",
-              "src": "850:7:10",
-              "stateMutability": "nonpayable",
-              "typeDescriptions": {
-                "typeIdentifier": "t_address",
-                "typeString": "address"
               }
             },
             "visibility": "internal"
           }
         ],
         "name": "DefifaDelegateData",
-        "nameLocation": "671:18:10",
-        "scope": 3602,
+        "nameLocation": "604:18:10",
+        "scope": 2888,
         "visibility": "public"
       }
     ],
