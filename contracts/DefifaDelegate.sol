@@ -250,9 +250,13 @@ contract DefifaDelegate is IDefifaDelegate, JB721TieredGovernance {
 
     @param _tokenId The ID of the token to get the tier URI for.
 
-    @return The token URI corresponding with the tier or the tokenUriResolver URI.
+    @return uri The token URI corresponding with the tier or the tokenUriResolver URI.
   */
-  function tokenURI(uint256 _tokenId) public view override returns (string memory) {
+  function tokenURI(uint256 _tokenId) public view override returns (string memory uri) {
+    // Check to see if the superclass has a token URI. Return it if it does.
+    uri = super.tokenURI(_tokenId);
+    if (bytes(uri).length != 0) return uri;
+
     // Get a reference to the tier.
     JB721Tier memory _tier = store.tierOfTokenId(address(this), _tokenId);
 
@@ -327,11 +331,7 @@ contract DefifaDelegate is IDefifaDelegate, JB721TieredGovernance {
       )
     );
     parts[3] = string('"}');
-    string memory uri = string.concat(
-      parts[0],
-      Base64.encode(abi.encodePacked(parts[1], parts[2], parts[3]))
-    );
-    return uri;
+    uri = string.concat(parts[0], Base64.encode(abi.encodePacked(parts[1], parts[2], parts[3])));
   }
 
   //*********************************************************************//
