@@ -6,6 +6,7 @@ import '@jbx-protocol/juice-contracts-v3/contracts/interfaces/IJBController.sol'
 import '../structs/DefifaLaunchProjectData.sol';
 import '../structs/DefifaDelegateData.sol';
 import '../structs/DefifaTimeData.sol';
+import './IDefifaGovernor.sol';
 
 interface IDefifaDeployer {
   function SPLIT_PROJECT_ID() external view returns (uint256);
@@ -41,7 +42,7 @@ interface IDefifaDeployer {
   function launchGameWith(
     DefifaDelegateData calldata _delegateData,
     DefifaLaunchProjectData calldata _launchProjectData
-  ) external returns (uint256 projectId);
+  ) external returns (uint256 projectId, IDefifaGovernor governor);
 
   function queueNextPhaseOf(uint256 _projectId) external returns (uint256 configuration);
 

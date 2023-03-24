@@ -12,7 +12,6 @@ import '@jbx-protocol/juice-721-delegate/contracts/interfaces/IJBTiered721Delega
   @member tiers The tiers to set.
   @member tierNames The names of the tiers.
   @member store The store contract to use.
-  @member owner The address that should own the delegate contract.
 */
 struct DefifaDelegateData {
   string name;
@@ -22,5 +21,4 @@ struct DefifaDelegateData {
   JB721TierParams[] tiers;
   string[] tierNames;
   IJBTiered721DelegateStore store;
-  address owner;
 }

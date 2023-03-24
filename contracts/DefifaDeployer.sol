@@ -10,6 +10,7 @@ import '@jbx-protocol/juice-721-delegate/contracts/libraries/JBTiered721FundingC
 import './interfaces/IDefifaDeployer.sol';
 import './structs/DefifaStoredOpsData.sol';
 import './DefifaDelegate.sol';
+import './DefifaGovernor.sol';
 
 /**
   @title
@@ -221,11 +222,12 @@ contract DefifaDeployer is IDefifaDeployer, IERC721Receiver {
     @param _launchProjectData Data necessary to fulfill the transaction to launch a project.
 
     @return gameId The ID of the newly configured game.
+    @return governor The address that governs the game.
   */
   function launchGameWith(
     DefifaDelegateData memory _delegateData,
     DefifaLaunchProjectData memory _launchProjectData
-  ) external override returns (uint256 gameId) {
+  ) external override returns (uint256 gameId, IDefifaGovernor governor) {
     // Start minting right away if a start time isn't provided.
     if (_launchProjectData.start == 0) _launchProjectData.start = uint48(block.timestamp);
 
@@ -295,11 +297,13 @@ contract DefifaDeployer is IDefifaDeployer, IERC721Receiver {
       _delegateData.tierNames
     );
 
-    // Transfer ownership to the specified owner.
-    _delegate.transferOwnership(_delegateData.owner);
-
     // Queue the first phase of the game.
     _queuePhase1(_launchProjectData, address(_delegate));
+
+     governor = new DefifaGovernor(_delegate, _launchProjectData.end);
+
+    // Transfer ownership to the specified owner.
+    _delegate.transferOwnership(address(governor));
   }
 
   /**
@@ -609,8 +613,6 @@ contract DefifaDeployer is IDefifaDeployer, IERC721Receiver {
     @return configuration The configuration of the funding cycle that was successfully reconfigured.
   */
   function _queuePhase4(uint256 _gameId, address _dataSource) internal returns (uint256 configuration) {
-    // TODO: Save total project token supply.
-    // TODO: Save block number .
     return
       controller.reconfigureFundingCyclesOf(
         _gameId,
