@@ -41,6 +41,16 @@ contract DefifaGovernor is Governor, GovernorCountingSimple, IDefifaGovernor {
   uint256 internal constant _BLOCKTIME_SECONDS = 12;
 
   //*********************************************************************//
+  // --------------------- private stored properties ------------------- //
+  //*********************************************************************//
+
+  /** 
+    @notice
+    The time the vote will be active for once it has started, measured in blocks.
+  */
+  uint256 private _votingPeriod;
+
+  //*********************************************************************//
   // ------------------------ public constants ------------------------- //
   //*********************************************************************//
 
@@ -93,9 +103,14 @@ contract DefifaGovernor is Governor, GovernorCountingSimple, IDefifaGovernor {
     Initializes the contract.
 
     @param _delegate The Defifa delegate contract that this contract is Governing.
-    @param _votingStartTime Voting start time .
+    @param _votingStartTime Voting start time.
+    @param __votingPeriod The time the vote will be active for once it has started, measured in blocks. This is two weeks by default.
   */
-  function initialize(IDefifaDelegate _delegate, uint256 _votingStartTime) public virtual override {
+  function initialize(
+    IDefifaDelegate _delegate,
+    uint256 _votingStartTime,
+    uint256 __votingPeriod
+  ) public virtual override {
     // Make the original un-initializable.
     if (address(this) == codeOrigin) revert();
 
@@ -104,6 +119,8 @@ contract DefifaGovernor is Governor, GovernorCountingSimple, IDefifaGovernor {
 
     delegate = _delegate;
     votingStartTime = _votingStartTime;
+    // two weeks by default.
+    _votingPeriod = __votingPeriod == 0 ? 100381 : __votingPeriod;
   }
 
   /**
@@ -314,9 +331,8 @@ contract DefifaGovernor is Governor, GovernorCountingSimple, IDefifaGovernor {
     @notice
     The amount of time that must go by for voting on a proposal to no longer be allowed.
   */
-  function votingPeriod() public pure override(IGovernor) returns (uint256) {
-    // blocks worth 2 weeks
-    return 100381;
+  function votingPeriod() public view override(IGovernor) returns (uint256) {
+    return _votingPeriod;
   }
 
   /** 

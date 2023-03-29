@@ -4,7 +4,6 @@ pragma solidity ^0.8.0;
 import '@jbx-protocol/juice-721-delegate/contracts/interfaces/IJBTiered721DelegateDeployer.sol';
 import '@jbx-protocol/juice-contracts-v3/contracts/interfaces/IJBController3_1.sol';
 import '../structs/DefifaLaunchProjectData.sol';
-import '../structs/DefifaDelegateData.sol';
 import '../structs/DefifaTimeData.sol';
 import './IDefifaGovernor.sol';
 
@@ -37,14 +36,11 @@ interface IDefifaDeployer {
 
   function distributionLimit(uint256 _gameId) external view returns (uint256);
 
-  function holdFeesDuring(uint256 _gameId) external view returns (bool);
-
   function currentGamePhaseOf(uint256 _gameId) external view returns (uint256);
 
   function nextPhaseNeedsQueueing(uint256 _gameId) external view returns (bool);
 
   function launchGameWith(
-    DefifaDelegateData calldata _delegateData,
     DefifaLaunchProjectData calldata _launchProjectData
   ) external returns (uint256 projectId, IDefifaGovernor governor);
 

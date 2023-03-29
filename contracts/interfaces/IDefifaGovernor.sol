@@ -13,7 +13,11 @@ interface IDefifaGovernor {
 
   function votingStartTime() external view returns (uint256);
 
-  function initialize(IDefifaDelegate _defifaDelegate, uint256 _votingStartTime) external;
+  function initialize(
+    IDefifaDelegate _defifaDelegate,
+    uint256 _votingStartTime,
+    uint256 _votingPeriod
+  ) external;
 
   function submitScorecards(
     DefifaTierRedemptionWeight[] calldata _tierWeights

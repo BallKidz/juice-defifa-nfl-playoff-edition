@@ -10,34 +10,34 @@
   },
   "ast": {
     "absolutePath": "contracts/structs/DefifaDelegateData.sol",
-    "id": 2888,
+    "id": 9294,
     "exportedSymbols": {
       "DefifaDelegateData": [
-        2887
+        9293
       ],
       "IJBTiered721DelegateStore": [
-        36948
+        43354
       ],
       "IJBTokenUriResolver": [
-        50786
+        57192
       ],
       "JB721Tier": [
-        37557
+        43963
       ],
       "JB721TierParams": [
-        37588
+        43994
       ],
       "JBTiered721Flags": [
-        37740
+        44146
       ]
     },
     "nodeType": "SourceUnit",
-    "src": "32:751:10",
+    "src": "32:751:13",
     "nodes": [
       {
-        "id": 2866,
+        "id": 9272,
         "nodeType": "PragmaDirective",
-        "src": "32:23:10",
+        "src": "32:23:13",
         "nodes": [],
         "literals": [
           "solidity",
@@ -47,47 +47,47 @@
         ]
       },
       {
-        "id": 2867,
+        "id": 9273,
         "nodeType": "ImportDirective",
-        "src": "57:80:10",
+        "src": "57:80:13",
         "nodes": [],
         "absolutePath": "node_modules/@jbx-protocol/juice-721-delegate/contracts/structs/JB721TierParams.sol",
         "file": "@jbx-protocol/juice-721-delegate/contracts/structs/JB721TierParams.sol",
         "nameLocation": "-1:-1:-1",
-        "scope": 2888,
-        "sourceUnit": 37589,
+        "scope": 9294,
+        "sourceUnit": 43995,
         "symbolAliases": [],
         "unitAlias": ""
       },
       {
-        "id": 2868,
+        "id": 9274,
         "nodeType": "ImportDirective",
-        "src": "138:93:10",
+        "src": "138:93:13",
         "nodes": [],
         "absolutePath": "node_modules/@jbx-protocol/juice-721-delegate/contracts/interfaces/IJBTiered721DelegateStore.sol",
         "file": "@jbx-protocol/juice-721-delegate/contracts/interfaces/IJBTiered721DelegateStore.sol",
         "nameLocation": "-1:-1:-1",
-        "scope": 2888,
-        "sourceUnit": 36949,
+        "scope": 9294,
+        "sourceUnit": 43355,
         "symbolAliases": [],
         "unitAlias": ""
       },
       {
-        "id": 2887,
+        "id": 9293,
         "nodeType": "StructDefinition",
-        "src": "597:185:10",
+        "src": "597:185:13",
         "nodes": [],
         "canonicalName": "DefifaDelegateData",
         "members": [
           {
             "constant": false,
-            "id": 2870,
+            "id": 9276,
             "mutability": "mutable",
             "name": "name",
-            "nameLocation": "634:4:10",
+            "nameLocation": "634:4:13",
             "nodeType": "VariableDeclaration",
-            "scope": 2887,
-            "src": "627:11:10",
+            "scope": 9293,
+            "src": "627:11:13",
             "stateVariable": false,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -95,10 +95,10 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 2869,
+              "id": 9275,
               "name": "string",
               "nodeType": "ElementaryTypeName",
-              "src": "627:6:10",
+              "src": "627:6:13",
               "typeDescriptions": {
                 "typeIdentifier": "t_string_storage_ptr",
                 "typeString": "string"
@@ -108,13 +108,13 @@
           },
           {
             "constant": false,
-            "id": 2872,
+            "id": 9278,
             "mutability": "mutable",
             "name": "symbol",
-            "nameLocation": "649:6:10",
+            "nameLocation": "649:6:13",
             "nodeType": "VariableDeclaration",
-            "scope": 2887,
-            "src": "642:13:10",
+            "scope": 9293,
+            "src": "642:13:13",
             "stateVariable": false,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -122,10 +122,10 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 2871,
+              "id": 9277,
               "name": "string",
               "nodeType": "ElementaryTypeName",
-              "src": "642:6:10",
+              "src": "642:6:13",
               "typeDescriptions": {
                 "typeIdentifier": "t_string_storage_ptr",
                 "typeString": "string"
@@ -135,13 +135,13 @@
           },
           {
             "constant": false,
-            "id": 2874,
+            "id": 9280,
             "mutability": "mutable",
             "name": "baseUri",
-            "nameLocation": "666:7:10",
+            "nameLocation": "666:7:13",
             "nodeType": "VariableDeclaration",
-            "scope": 2887,
-            "src": "659:14:10",
+            "scope": 9293,
+            "src": "659:14:13",
             "stateVariable": false,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -149,10 +149,10 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 2873,
+              "id": 9279,
               "name": "string",
               "nodeType": "ElementaryTypeName",
-              "src": "659:6:10",
+              "src": "659:6:13",
               "typeDescriptions": {
                 "typeIdentifier": "t_string_storage_ptr",
                 "typeString": "string"
@@ -162,13 +162,13 @@
           },
           {
             "constant": false,
-            "id": 2876,
+            "id": 9282,
             "mutability": "mutable",
             "name": "contractUri",
-            "nameLocation": "684:11:10",
+            "nameLocation": "684:11:13",
             "nodeType": "VariableDeclaration",
-            "scope": 2887,
-            "src": "677:18:10",
+            "scope": 9293,
+            "src": "677:18:13",
             "stateVariable": false,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -176,10 +176,10 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 2875,
+              "id": 9281,
               "name": "string",
               "nodeType": "ElementaryTypeName",
-              "src": "677:6:10",
+              "src": "677:6:13",
               "typeDescriptions": {
                 "typeIdentifier": "t_string_storage_ptr",
                 "typeString": "string"
@@ -189,45 +189,45 @@
           },
           {
             "constant": false,
-            "id": 2880,
+            "id": 9286,
             "mutability": "mutable",
             "name": "tiers",
-            "nameLocation": "717:5:10",
+            "nameLocation": "717:5:13",
             "nodeType": "VariableDeclaration",
-            "scope": 2887,
-            "src": "699:23:10",
+            "scope": 9293,
+            "src": "699:23:13",
             "stateVariable": false,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_array$_t_struct$_JB721TierParams_$37588_storage_$dyn_storage_ptr",
+              "typeIdentifier": "t_array$_t_struct$_JB721TierParams_$43994_storage_$dyn_storage_ptr",
               "typeString": "struct JB721TierParams[]"
             },
             "typeName": {
               "baseType": {
-                "id": 2878,
+                "id": 9284,
                 "nodeType": "UserDefinedTypeName",
                 "pathNode": {
-                  "id": 2877,
+                  "id": 9283,
                   "name": "JB721TierParams",
                   "nameLocations": [
-                    "699:15:10"
+                    "699:15:13"
                   ],
                   "nodeType": "IdentifierPath",
-                  "referencedDeclaration": 37588,
-                  "src": "699:15:10"
+                  "referencedDeclaration": 43994,
+                  "src": "699:15:13"
                 },
-                "referencedDeclaration": 37588,
-                "src": "699:15:10",
+                "referencedDeclaration": 43994,
+                "src": "699:15:13",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_struct$_JB721TierParams_$37588_storage_ptr",
+                  "typeIdentifier": "t_struct$_JB721TierParams_$43994_storage_ptr",
                   "typeString": "struct JB721TierParams"
                 }
               },
-              "id": 2879,
+              "id": 9285,
               "nodeType": "ArrayTypeName",
-              "src": "699:17:10",
+              "src": "699:17:13",
               "typeDescriptions": {
-                "typeIdentifier": "t_array$_t_struct$_JB721TierParams_$37588_storage_$dyn_storage_ptr",
+                "typeIdentifier": "t_array$_t_struct$_JB721TierParams_$43994_storage_$dyn_storage_ptr",
                 "typeString": "struct JB721TierParams[]"
               }
             },
@@ -235,13 +235,13 @@
           },
           {
             "constant": false,
-            "id": 2883,
+            "id": 9289,
             "mutability": "mutable",
             "name": "tierNames",
-            "nameLocation": "735:9:10",
+            "nameLocation": "735:9:13",
             "nodeType": "VariableDeclaration",
-            "scope": 2887,
-            "src": "726:18:10",
+            "scope": 9293,
+            "src": "726:18:13",
             "stateVariable": false,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -250,18 +250,18 @@
             },
             "typeName": {
               "baseType": {
-                "id": 2881,
+                "id": 9287,
                 "name": "string",
                 "nodeType": "ElementaryTypeName",
-                "src": "726:6:10",
+                "src": "726:6:13",
                 "typeDescriptions": {
                   "typeIdentifier": "t_string_storage_ptr",
                   "typeString": "string"
                 }
               },
-              "id": 2882,
+              "id": 9288,
               "nodeType": "ArrayTypeName",
-              "src": "726:8:10",
+              "src": "726:8:13",
               "typeDescriptions": {
                 "typeIdentifier": "t_array$_t_string_storage_$dyn_storage_ptr",
                 "typeString": "string[]"
@@ -271,36 +271,36 @@
           },
           {
             "constant": false,
-            "id": 2886,
+            "id": 9292,
             "mutability": "mutable",
             "name": "store",
-            "nameLocation": "774:5:10",
+            "nameLocation": "774:5:13",
             "nodeType": "VariableDeclaration",
-            "scope": 2887,
-            "src": "748:31:10",
+            "scope": 9293,
+            "src": "748:31:13",
             "stateVariable": false,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_contract$_IJBTiered721DelegateStore_$36948",
+              "typeIdentifier": "t_contract$_IJBTiered721DelegateStore_$43354",
               "typeString": "contract IJBTiered721DelegateStore"
             },
             "typeName": {
-              "id": 2885,
+              "id": 9291,
               "nodeType": "UserDefinedTypeName",
               "pathNode": {
-                "id": 2884,
+                "id": 9290,
                 "name": "IJBTiered721DelegateStore",
                 "nameLocations": [
-                  "748:25:10"
+                  "748:25:13"
                 ],
                 "nodeType": "IdentifierPath",
-                "referencedDeclaration": 36948,
-                "src": "748:25:10"
+                "referencedDeclaration": 43354,
+                "src": "748:25:13"
               },
-              "referencedDeclaration": 36948,
-              "src": "748:25:10",
+              "referencedDeclaration": 43354,
+              "src": "748:25:13",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_IJBTiered721DelegateStore_$36948",
+                "typeIdentifier": "t_contract$_IJBTiered721DelegateStore_$43354",
                 "typeString": "contract IJBTiered721DelegateStore"
               }
             },
@@ -308,12 +308,12 @@
           }
         ],
         "name": "DefifaDelegateData",
-        "nameLocation": "604:18:10",
-        "scope": 2888,
+        "nameLocation": "604:18:13",
+        "scope": 9294,
         "visibility": "public"
       }
     ],
     "license": "MIT"
   },
-  "id": 10
+  "id": 13
 }

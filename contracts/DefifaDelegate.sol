@@ -82,14 +82,6 @@ contract DefifaDelegate is IDefifaDelegate, JB721TieredGovernance {
   */
   mapping(uint256 => uint256) private _redeemedFromTier;
 
-  /**
-    @notice
-    The names of each tier.
-
-    @dev _tierId The ID of the tier to get a name for.
-  */
-  mapping(uint256 => string) private _tierNameOf;
-
   //*********************************************************************//
   // ------------------------- external views -------------------------- //
   //*********************************************************************//
@@ -102,18 +94,6 @@ contract DefifaDelegate is IDefifaDelegate, JB721TieredGovernance {
   */
   function name() public view override(ERC721, IDefifaDelegate) returns (string memory) {
     return super.name();
-  }
-
-  /** 
-    @notice
-    The name of the tier with the specified ID.
-
-    @param _tierId The ID of the tier to get the name of.
-
-    @return The tier's name.
-  */
-  function tierNameOf(uint256 _tierId) external view override returns (string memory) {
-    return _tierNameOf[_tierId];
   }
 
   /** 
@@ -222,9 +202,6 @@ contract DefifaDelegate is IDefifaDelegate, JB721TieredGovernance {
         ++_i;
       }
     }
-
-    // If there's nothing to claim, revert to prevent burning for nothing.
-    if (cumulativeWeight == 0) revert NOTHING_TO_CLAIM();
   }
 
   /** 
@@ -269,61 +246,6 @@ contract DefifaDelegate is IDefifaDelegate, JB721TieredGovernance {
   //*********************************************************************//
   // ---------------------- external transactions ---------------------- //
   //*********************************************************************//
-
-  /**
-    @param _projectId The ID of the project this contract's functionality applies to.
-    @param _directory The directory of terminals and controllers for projects.
-    @param _name The name of the token.
-    @param _symbol The symbol that the token should be represented by.
-    @param _fundingCycleStore A contract storing all funding cycle configurations.
-    @param _baseUri A URI to use as a base for full token URIs.
-    @param _tokenUriResolver A contract responsible for resolving the token URI for each token ID.
-    @param _contractUri A URI where contract metadata can be found.
-    @param _pricing The tier pricing according to which token distribution will be made. Must be passed in order of contribution floor, with implied increasing value.
-    @param _store A contract that stores the NFT's data.
-    @param _flags A set of flags that help define how this contract works.
-  */
-  function initialize(
-    uint256 _projectId,
-    IJBDirectory _directory,
-    string memory _name,
-    string memory _symbol,
-    IJBFundingCycleStore _fundingCycleStore,
-    string memory _baseUri,
-    IJBTokenUriResolver _tokenUriResolver,
-    string memory _contractUri,
-    JB721PricingParams memory _pricing,
-    IJBTiered721DelegateStore _store,
-    JBTiered721Flags memory _flags,
-    string[] memory _tierNames
-  ) public override {
-    super.initialize(
-      _projectId,
-      _directory,
-      string.concat('DEFIFA: ', _name),
-      _symbol,
-      _fundingCycleStore,
-      _baseUri,
-      _tokenUriResolver,
-      _contractUri,
-      _pricing,
-      _store,
-      _flags
-    );
-
-    // Keep a reference to the number of tier names.
-    uint256 _numberOfTierNames = _tierNames.length;
-
-    // Set the name for each tier.
-    for (uint256 _i; _i < _numberOfTierNames; ) {
-      // Set the tier name.
-      _tierNameOf[_i + 1] = _tierNames[_i];
-
-      unchecked {
-        ++_i;
-      }
-    }
-  }
 
   /** 
     @notice
@@ -388,6 +310,9 @@ contract DefifaDelegate is IDefifaDelegate, JB721TieredGovernance {
       !directory.isTerminalOf(projectId, IJBPaymentTerminal(msg.sender)) ||
       _data.projectId != projectId
     ) revert INVALID_REDEMPTION_EVENT();
+
+    // If there's nothing being claimed, revert to prevent burning for nothing.
+    if (_data.reclaimedAmount.value == 0) revert NOTHING_TO_CLAIM();
 
     // Check the 4 bytes interfaceId and handle the case where the metadata was not intended for this contract
     // Skip 32 bytes reserved for generic extension parameters.

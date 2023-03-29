@@ -3,6 +3,7 @@ pragma solidity ^0.8.16;
 
 import '@openzeppelin/contracts/proxy/Clones.sol';
 import '@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol';
+import "@openzeppelin/contracts/utils/Strings.sol";
 import '@jbx-protocol/juice-contracts-v3/contracts/libraries/JBConstants.sol';
 import '@jbx-protocol/juice-contracts-v3/contracts/libraries/JBTokens.sol';
 import '@jbx-protocol/juice-contracts-v3/contracts/libraries/JBSplitsGroups.sol';
@@ -26,6 +27,8 @@ import './DefifaTokenUriResolver.sol';
   IDefifaDeployer: General interface for the generic controller methods in this contract that interacts with funding cycles and tokens according to the protocol's rules.
 */
 contract DefifaDeployer is IDefifaDeployer, IERC721Receiver {
+  using Strings for uint256;
+
   //*********************************************************************//
   // --------------------------- custom errors ------------------------- //
   //*********************************************************************//
@@ -157,10 +160,6 @@ contract DefifaDeployer is IDefifaDeployer, IERC721Receiver {
     return uint256(_opsFor[_gameId].distributionLimit);
   }
 
-  function holdFeesDuring(uint256 _gameId) external view override returns (bool) {
-    return _opsFor[_gameId].holdFees;
-  }
-
   /**
     @notice
     Returns the number of the game phase.
@@ -231,14 +230,12 @@ contract DefifaDeployer is IDefifaDeployer, IERC721Receiver {
     @notice
     Launches a new project with a Defifa data source attached.
 
-    @param _delegateData Data necessary to fulfill the transaction to deploy a delegate.
     @param _launchProjectData Data necessary to fulfill the transaction to launch a project.
 
     @return gameId The ID of the newly configured game.
     @return governor The address that governs the game.
   */
   function launchGameWith(
-    DefifaDelegateData memory _delegateData,
     DefifaLaunchProjectData memory _launchProjectData
   ) external override returns (uint256 gameId, IDefifaGovernor governor) {
     // Start minting right away if a start time isn't provided.
@@ -266,8 +263,7 @@ contract DefifaDeployer is IDefifaDeployer, IERC721Receiver {
       _opsFor[gameId] = DefifaStoredOpsData({
         terminal:_launchProjectData.terminal,
         distributionLimit: _launchProjectData.distributionLimit,
-        token: _launchProjectData.token,
-        holdFees: _launchProjectData.holdFees
+        token: _launchProjectData.token
       });
 
       if (_launchProjectData.splits.length != 0) {
@@ -288,9 +284,51 @@ contract DefifaDeployer is IDefifaDeployer, IERC721Receiver {
         controller.splitsStore().set(BALLKIDZ_PROJECT_ID, SPLIT_DOMAIN, _groupedSplits);
       }
     }
+    
+    // Keep track of the number of tiers.
+    uint256 _numberOfTiers = _launchProjectData.tiers.length;  
+
+    // Create the standard tiers struct that will be populated from the defifa tiers.
+    JB721TierParams[] memory _delegateTiers = new JB721TierParams[](_launchProjectData.tiers.length);
+
+    // Group all the tier names together.
+    string[] memory _tierNames = new string[](_launchProjectData.tiers.length);
+
+    // Keep a reference to the tier being iterated on.
+    DefifaTierParams memory _defifaTier;
+
+    // Create the delegate tiers from the Defifa tiers.
+    for (uint256 _i; _i < _numberOfTiers;) {
+      _defifaTier = _launchProjectData.tiers[_i];
+
+      // Set the tier.
+      _delegateTiers[_i] = JB721TierParams({
+        contributionFloor: _defifaTier.price,
+        initialQuantity: type(uint40).max,
+        votingUnits: 1,
+        lockedUntil: 0,
+        reservedRate: _defifaTier.reservedRate,
+        reservedTokenBeneficiary: _defifaTier.reservedTokenBeneficiary,
+        royaltyRate: _defifaTier.royaltyRate,
+        royaltyBeneficiary: _defifaTier.royaltyBeneficiary,
+        encodedIPFSUri: _defifaTier.encodedIPFSUri,
+        category: 0,
+        allowManualMint: false,
+        shouldUseReservedTokenBeneficiaryAsDefault: _defifaTier.shouldUseReservedTokenBeneficiaryAsDefault, 
+        shouldUseRoyaltyBeneficiaryAsDefault: false,
+        transfersPausable: false
+      });
+
+      // Set the name.
+      _tierNames[_i] = _defifaTier.name;
+
+      unchecked {
+        ++_i;
+      }
+    }
 
     JB721PricingParams memory _pricingParams = JB721PricingParams({
-        tiers: _delegateData.tiers,
+        tiers: _delegateTiers,
         currency: _launchProjectData.terminal.currencyForToken(_launchProjectData.token),
         decimals: _launchProjectData.terminal.decimalsForToken(_launchProjectData.token),
         prices: IJBPrices(address(0))
@@ -302,23 +340,22 @@ contract DefifaDeployer is IDefifaDeployer, IERC721Receiver {
     _delegate.initialize(
       gameId,
       controller.directory(),
-      _delegateData.name,
-      _delegateData.symbol,
+      string.concat('DEFIFA: ', _launchProjectData.name),
+      string.concat('DEFIFA ', gameId.toString()),
       controller.fundingCycleStore(),
-      _delegateData.baseUri,
+      _launchProjectData.baseUri,
       _uriResolver,
-      _delegateData.contractUri,
+      _launchProjectData.contractUri,
       _pricingParams,
-      _delegateData.store,
+      _launchProjectData.store,
       JBTiered721Flags({
           preventOverspending: true,
           lockReservedTokenChanges: false,
           lockVotingUnitChanges: false,
           lockManualMintingChanges: false
-      }),
-      _delegateData.tierNames
+      })
     );
-    _uriResolver.initialize(_delegate);
+    _uriResolver.initialize(_delegate, _tierNames);
 
     // Make sure the provided terminal accepts the same currency as this game is being played in.
     if (!_launchProjectData.terminal.acceptsToken(_launchProjectData.token, gameId)) revert UNEXPECTED_TERMINAL_CURRENCY();
@@ -328,7 +365,7 @@ contract DefifaDeployer is IDefifaDeployer, IERC721Receiver {
 
     // Clone and initialize the new governor.
      governor = IDefifaGovernor(Clones.clone(governorCodeOrigin));
-     governor.initialize(_delegate, _launchProjectData.end);
+     governor.initialize(_delegate, _launchProjectData.end, _launchProjectData.votingPeriod);
 
     // Transfer ownership to the specified owner.
     _delegate.transferOwnership(address(governor));
@@ -440,7 +477,7 @@ contract DefifaDeployer is IDefifaDeployer, IERC721Receiver {
         allowMinting: false,
         allowTerminalMigration: false,
         allowControllerMigration: false,
-        holdFees: _launchProjectData.holdFees,
+        holdFees: false,
         preferClaimedTokenOverride: false,
         useTotalOverflowForRedemptions: false,
         useDataSourceForPay: true,
@@ -609,7 +646,7 @@ contract DefifaDeployer is IDefifaDeployer, IERC721Receiver {
           allowMinting: false,
           allowTerminalMigration: false,
           allowControllerMigration: false,
-          holdFees: _ops.holdFees,
+          holdFees: false,
           preferClaimedTokenOverride: false,
           useTotalOverflowForRedemptions: false,
           useDataSourceForPay: true,
