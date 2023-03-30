@@ -304,7 +304,7 @@ contract DefifaDeployer is IDefifaDeployer, IERC721Receiver {
       // Set the tier.
       _delegateTiers[_i] = JB721TierParams({
         contributionFloor: _defifaTier.price,
-        initialQuantity: type(uint40).max,
+        initialQuantity: type(uint24).max,
         votingUnits: 1,
         lockedUntil: 0,
         reservedRate: _defifaTier.reservedRate,
@@ -312,7 +312,7 @@ contract DefifaDeployer is IDefifaDeployer, IERC721Receiver {
         royaltyRate: _defifaTier.royaltyRate,
         royaltyBeneficiary: _defifaTier.royaltyBeneficiary,
         encodedIPFSUri: _defifaTier.encodedIPFSUri,
-        category: 0,
+        category: 1,
         allowManualMint: false,
         shouldUseReservedTokenBeneficiaryAsDefault: _defifaTier.shouldUseReservedTokenBeneficiaryAsDefault, 
         shouldUseRoyaltyBeneficiaryAsDefault: false,
